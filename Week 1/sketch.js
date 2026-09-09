@@ -1,9 +1,21 @@
 function setup() {
-  createCanvas(1900, 970);
+  createCanvas(1900, 2000);
 }
 
 function draw() {
   background(220);
+
+  //Lo de las cordenadas es sencillo, pero lo del crosshair debo investigar mas.
+  // Mouse coordinates
+  fill(0);
+  textSize(50);
+  text("X: " + mouseX + " Y: " + mouseY, 1500, 40);
+
+  // Crosshair
+  stroke(255, 0, 0);
+  line(mouseX - 10, mouseY, mouseX + 10, mouseY);
+  line(mouseX, mouseY - 10, mouseX, mouseY + 10);
+
 
   // Naam
   textSize(32);
@@ -78,7 +90,7 @@ function draw() {
 
   
   // Verkeerslicht
-  push()
+  push();
 
   text('5',500,500,);
 
@@ -103,19 +115,17 @@ function draw() {
   push();
   text('6',830,50,);
 
-  strokeWeight(10)
+  strokeWeight(10);
   rect(890,50,250,250, 20);
-
 
   strokeWeight(70);
   point(950, 110);
-
   
   strokeWeight(70);
-  point(1015, 180)
+  point(1015, 180);
   
   strokeWeight(70);
-  point(1080, 245)
+  point(1080, 245);
   pop();
 
 
@@ -124,8 +134,76 @@ function draw() {
   text('7',830,350,);
 
   noStroke()
-  rect(950,390,50,50)
-  
+  // Red
+  fill(255, 1, 0)
+  rect(1150,390,350,50);
+  rect(1100,740,100,50);
+  rect(1250,740,250,50);
+  rect(1100,440,550,50);
+  rect(1050,790,150,50);
+  rect(1250,790,150,50);
+  rect(1450,790,150,50);
+  rect(1450,840,200,50);
+  rect(1100,890,50,50);
+  rect(1500,890,50,50);
+  rect(1000,840,200,50);
+
+  // Brownn
+  fill(152, 64, 57)
+  rect(1100,490,150,50);
+  rect(1050,540,50,50);
+  rect(1150,540,50,50);
+  rect(1050,590,50,50);
+  rect(1050,640,100,50);
+  rect(1150,590,100,50);
+  rect(1050,1090,150,50);
+  rect(1450,1090,150,50);
+  rect(1000,1140,200,50);
+  rect(1450,1140,200,50);
+
+  // Skin tone
+  fill(255, 200, 159)
+  rect(1250,490,200,50);
+  rect(1100,540,50,50);
+  rect(1200,540,250,50);
+  rect(1500,540,150,50);
+  rect(1250,590,250,50);
+  rect(1550,590,150,50);
+  rect(1150,640,300,50);
+  rect(1150,690,450,50);
+  rect(1100,590,50,50);
+  rect(1000,890,100,50);
+  rect(1550,890,100,50);
+  rect(1000,940,150,50);
+  rect(1500,940,150,50);
+  rect(1000,990,100,50);
+  rect(1550,990,100,50);
+
+  // Blue
+  fill(0, 0, 255)
+  rect(1200,740,50,50);
+  rect(1200,790,50,50);
+  rect(1400,790,50,50);
+  rect(1150,890,50,50);
+  rect(1200,840,250,50);
+  rect(1450,890,50,50);
+  rect(1150,940,350,50);
+  rect(1100,990,450,50);
+  rect(1100,1040,150,50);
+  rect(1400,1040,150,50);
+  rect(1250,890,150,50);
+
+  // Yellow
+  fill(255, 255, 2)
+  rect(1400,890,50,50);
+  rect(1200,890,50,50);
+
+  // Darck
+  fill(0, 0, 0)
+  rect(1450,490,50,50);
+  rect(1500,590,50,50);
+  rect(1450,640,200,50);
+  rect(1450,540,50,50);
   pop();
   
 }
