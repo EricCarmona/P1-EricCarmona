@@ -409,7 +409,7 @@ function draw() {
   
   text('Teken een Sierpiński triangle ★★★★', 50, 4000);
 
-  // Triángulo de Sierpiński
+  // Sierpiński
 
   push();
 
