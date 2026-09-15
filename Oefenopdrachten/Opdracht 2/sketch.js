@@ -21,10 +21,10 @@ function draw() {
 
   text(x,20,20); 
   text(hi,20,60);
-  text("a = " + a + "  " + "b = " + b, 300,20)
+  text("a = " + a + "  " + "b = " + b, 300,20);
   text("Optellen = " + som,20,80);
   text("Afrekken = " + verschil,20,100);
-  text("Vermenigvuldigen = " + uitkomst,20,120)
-  text("Delen = " + rest,20,140)
+  text("Vermenigvuldigen = " + uitkomst,20,120);
+  text("Delen = " + rest,20,140);
 
 }
