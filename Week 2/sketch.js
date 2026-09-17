@@ -24,9 +24,9 @@ let slowCar = { x: -450, baseSpeed: 3, currentSpeed: 3, color: "orange" };
 let fastCar = { x: -750, baseSpeed: 7.5, currentSpeed: 7.5, color: "blue" };
 
 // Ik wilde alles in één complete wolk onderbrengen, zodat ik die zo vaak kan aanroepen als ik wil.
+let startWolk2 = 700;
+let startWolk3 = 800;
 let startWolk1 = 500;
-let startWolk2 = 500;
-let startWolk3 = 500;
 let wolk1 = () => {
   fill(222); circle(350 + startWolk1, 200+80, 60);
   fill(225); circle(450 + startWolk1, 205+80, 60);
@@ -36,20 +36,20 @@ let wolk1 = () => {
   fill(223); circle(425 + startWolk1, 180+80, 60);
 };
 let wolk2 = () => {
-  fill(222); circle(350 + startWolk2, 200-20, 60);
-  fill(225); circle(450 + startWolk2, 205-20, 60);
-  fill(220); circle(425 + startWolk2, 205-20, 60);
-  fill(221); circle(390 + startWolk2, 205-20, 60);
-  fill(220); circle(390 + startWolk2, 180-20, 60);
-  fill(223); circle(425 + startWolk2, 180-20, 60);
+  fill(222); circle(350 + startWolk2, 200, 60);
+  fill(225); circle(450 + startWolk2, 205, 60);
+  fill(220); circle(425 + startWolk2, 205, 60);
+  fill(221); circle(390 + startWolk2, 205, 60);
+  fill(220); circle(390 + startWolk2, 180, 60);
+  fill(223); circle(425 + startWolk2, 180, 60);
 };
 let wolk3 = () => {
-  fill(222); circle(350 + startWolk3, 200, 60);
-  fill(225); circle(450 + startWolk3, 205, 60);
-  fill(220); circle(425 + startWolk3, 205, 60);
-  fill(221); circle(390 + startWolk3, 205, 60);
-  fill(220); circle(390 + startWolk3, 180, 60);
-  fill(223); circle(425 + startWolk3, 180, 60);
+  fill(222); circle(350 + startWolk3, 200+40, 60);
+  fill(225); circle(450 + startWolk3, 205+40, 60);
+  fill(220); circle(425 + startWolk3, 205+40, 60);
+  fill(221); circle(390 + startWolk3, 205+40, 60);
+  fill(220); circle(390 + startWolk3, 180+40, 60);
+  fill(223); circle(425 + startWolk3, 180+40, 60);
 };
 
 function setup() {
@@ -174,18 +174,18 @@ function draw() {
 
   // Wolken 1 
   wolk1();
-  startWolk1 -=1.8; 
+  startWolk1 -=1.4; 
   if (startWolk1 < -500) { startWolk1 = 500};
 
   // Wolken 2 
   wolk2();
-  startWolk2 -=1.4; 
-  if (startWolk2 < -500) { startWolk2 = 500};
+  startWolk2 -=1.2; 
+  if (startWolk2 < -500) { startWolk2 = 700};
 
   // Wolken 3 
   wolk3();
   startWolk3 -=1; 
-  if (startWolk3 < -500) { startWolk3 = 500};
+  if (startWolk3 < -500) { startWolk3 = 800};
   pop();
 
   // ==========================================
