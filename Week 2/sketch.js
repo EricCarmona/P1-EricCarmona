@@ -74,10 +74,10 @@ function draw() {
   rect(0, 500, 800, 100);
 
   // Decoratielijnen op de weg
-  fill(80, 80, 80); rect(0, 495, 800, 5); // Lijn 1
+  fill(80, 80, 80);    rect(0, 495, 800, 5); // Lijn 1
   fill(225, 225, 225); rect(0, 595, 800, 5); // Lijn 2 (onderkant)
-  fill(0, 95, 0); rect(0, 490, 800, 5); // Lijn 3
-  fill(0, 64, 0); rect(0, 485, 800, 5); // Lijn 4
+  fill(0, 95, 0);      rect(0, 490, 800, 5); // Lijn 3
+  fill(0, 64, 0);      rect(0, 485, 800, 5); // Lijn 4
 
   // Onderbroken witte lijnen in het midden van de weg
   fill(225, 225, 225);
@@ -146,24 +146,24 @@ function draw() {
   rect(400, 365, 15, 130, 3);
 
   // Bladeren van boom 1
-  fill(0, 225, 0); circle(10 + treeLeaves1, 355, 80);
+  fill(0, 225, 0);   circle(10 + treeLeaves1, 355, 80);
   fill(120, 225, 0); circle(40 + treeLeaves2, 365, 60);
-  fill(0, 225, 60); circle(35 + treeLeaves3, 335, 70);
+  fill(0, 225, 60);  circle(35 + treeLeaves3, 335, 70);
 
   // Bladeren van boom 2
-  fill(0, 225, 0); circle(90 + treeLeaves1, 375, 80);
   fill(120, 225, 0); circle(120 + treeLeaves2, 375, 60);
-  fill(0, 225, 60); circle(107 + treeLeaves3, 345, 70);
+  fill(0, 225, 0);   circle(90 + treeLeaves1, 375, 80);
+  fill(0, 225, 60);  circle(107 + treeLeaves3, 345, 70);
 
   // Bladeren van boom 3
-  fill(0, 225, 0); circle(177 + treeLeaves1, 375, 80);
+  fill(0, 225, 0);   circle(177 + treeLeaves1, 375, 80);
+  fill(0, 225, 60);  circle(207 + treeLeaves3, 345, 70);
   fill(120, 225, 0); circle(220 + treeLeaves2, 375, 60);
-  fill(0, 225, 60); circle(207 + treeLeaves3, 345, 70);
 
   // Bladeren van boom 4
-  fill(0, 225, 0); circle(377 + treeLeaves1, 365, 80);
+  fill(0, 225, 0);   circle(377 + treeLeaves1, 365, 80);
   fill(120, 225, 0); circle(427 + treeLeaves2, 365, 60);
-  fill(0, 225, 60); circle(407 + treeLeaves3, 325, 70);
+  fill(0, 225, 60);  circle(407 + treeLeaves3, 325, 70);
   pop();
 
   // ========================================== //
@@ -206,9 +206,9 @@ function draw() {
   // ==========================================
   push();
   noStroke();
-  fill(224, 180, 71); circle(sunX, 100, sunRatio1);
+  fill(224, 180, 71);  circle(sunX, 100, sunRatio1);
   fill(224, 207, 165); circle(sunX, 100, sunRatio2);
-  fill(255, 255, 0); circle(sunX, 100, 40);
+  fill(255, 255, 0);   circle(sunX, 100, 40);
 
   sunRatio1 = sunRatio1 + sunSpeedRatio1;
   sunRatio2 = sunRatio2 + sunSpeedRatio2;
@@ -226,9 +226,9 @@ function draw() {
   fill(82, 51, 32);
   noStroke();
   rect(280, 515, 15, 80);
-  fill(0, 225, 0); circle(287 + treeLeaves1, 465, 80);
+  fill(0, 225, 0);   circle(287 + treeLeaves1, 465, 80);
   fill(120, 225, 0); circle(257 + treeLeaves2, 495, 60);
-  fill(0, 225, 60); circle(307 + treeLeaves3, 495, 70);
+  fill(0, 225, 60);  circle(307 + treeLeaves3, 495, 70);
 }
 
 // ==========================================
