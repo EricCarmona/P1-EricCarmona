@@ -187,19 +187,31 @@ function mouseClicked() {
   // Square 0 (Column 1: X from 100 to 200)
   if (mouseX > 100 && mouseX < 200 && mouseY > 100 && mouseY < 200 && value0 === "purple") {
     value0 = currentPlayer;
-    if (currentPlayer === "blue") { currentPlayer = "red"; } else { currentPlayer = "blue"; }
+    if (currentPlayer === "blue") {
+      currentPlayer = "red";
+    } else {
+      currentPlayer = "blue";
+    }
   }
 
   // Square 1 (Column 2: X from 220 to 320)
   if (mouseX > 220 && mouseX < 320 && mouseY > 100 && mouseY < 200 && value1 === "purple") {
     value1 = currentPlayer;
-    if (currentPlayer === "blue") { currentPlayer = "red"; } else { currentPlayer = "blue"; }
+    if (currentPlayer === "blue") {
+      currentPlayer = "red";
+    } else {
+      currentPlayer = "blue";
+    }
   }
 
   // Square 2 (Column 3: X from 340 to 440)
   if (mouseX > 340 && mouseX < 440 && mouseY > 100 && mouseY < 200 && value2 === "purple") {
     value2 = currentPlayer;
-    if (currentPlayer === "blue") { currentPlayer = "red"; } else { currentPlayer = "blue"; }
+    if (currentPlayer === "blue") {
+      currentPlayer = "red";
+    } else {
+      currentPlayer = "blue";
+    }
   }
 
   // --- ROW 2 (mouseY goes from 220 to 320) ---
@@ -207,19 +219,31 @@ function mouseClicked() {
   // Square 3 (Column 1: X from 100 to 200)
   if (mouseX > 100 && mouseX < 200 && mouseY > 220 && mouseY < 320 && value3 === "purple") {
     value3 = currentPlayer;
-    if (currentPlayer === "blue") { currentPlayer = "red"; } else { currentPlayer = "blue"; }
+    if (currentPlayer === "blue") {
+      currentPlayer = "red";
+    } else {
+      currentPlayer = "blue";
+    }
   }
 
   // Square 4 (Column 2: X from 220 to 320)
   if (mouseX > 220 && mouseX < 320 && mouseY > 220 && mouseY < 320 && value4 === "purple") {
     value4 = currentPlayer;
-    if (currentPlayer === "blue") { currentPlayer = "red"; } else { currentPlayer = "blue"; }
+    if (currentPlayer === "blue") {
+      currentPlayer = "red";
+    } else {
+      currentPlayer = "blue";
+    }
   }
 
   // Square 5 (Column 3: X from 340 to 440)
   if (mouseX > 340 && mouseX < 440 && mouseY > 220 && mouseY < 320 && value5 === "purple") {
     value5 = currentPlayer;
-    if (currentPlayer === "blue") { currentPlayer = "red"; } else { currentPlayer = "blue"; }
+    if (currentPlayer === "blue") {
+      currentPlayer = "red";
+    } else {
+      currentPlayer = "blue";
+    }
   }
 
   // --- ROW 3 (mouseY goes from 340 to 440) ---
@@ -227,46 +251,90 @@ function mouseClicked() {
   // Square 6 (Column 1: X from 100 to 200)
   if (mouseX > 100 && mouseX < 200 && mouseY > 340 && mouseY < 440 && value6 === "purple") {
     value6 = currentPlayer;
-    if (currentPlayer === "blue") { currentPlayer = "red"; } else { currentPlayer = "blue"; }
+    if (currentPlayer === "blue") {
+      currentPlayer = "red";
+    } else {
+      currentPlayer = "blue";
+    }
   }
 
   // Square 7 (Column 2: X from 220 to 320)
   if (mouseX > 220 && mouseX < 320 && mouseY > 340 && mouseY < 440 && value7 === "purple") {
     value7 = currentPlayer;
-    if (currentPlayer === "blue") { currentPlayer = "red"; } else { currentPlayer = "blue"; }
+    if (currentPlayer === "blue") {
+      currentPlayer = "red";
+    } else {
+      currentPlayer = "blue";
+    }
   }
 
   // Square 8 (Column 3: X from 340 to 440)
   if (mouseX > 340 && mouseX < 440 && mouseY > 340 && mouseY < 440 && value8 === "purple") {
     value8 = currentPlayer;
-    if (currentPlayer === "blue") { currentPlayer = "red"; } else { currentPlayer = "blue"; }
+    if (currentPlayer === "blue") {
+      currentPlayer = "red";
+    } else {
+      currentPlayer = "blue";
+    }
   }
 
   // check every possible line of 3 (rows, columns, diagonals)
   if (value0 !== "purple" && value0 === value1 && value1 === value2) {
     gameOver = true;
-    if (value0 === "blue") { winnerMessage = "Player 1 (Blue/X) wins!"; } else { winnerMessage = "Player 2 (Red/O) wins!"; }
+    if (value0 === "blue") {
+      winnerMessage = "Player 1 (Blue/X) wins!";
+    } else {
+      winnerMessage = "Player 2 (Red/O) wins!";
+    }
   } else if (value3 !== "purple" && value3 === value4 && value4 === value5) {
     gameOver = true;
-    if (value3 === "blue") { winnerMessage = "Player 1 (Blue/X) wins!"; } else { winnerMessage = "Player 2 (Red/O) wins!"; }
+    if (value3 === "blue") {
+      winnerMessage = "Player 1 (Blue/X) wins!";
+    } else {
+      winnerMessage = "Player 2 (Red/O) wins!";
+    }
   } else if (value6 !== "purple" && value6 === value7 && value7 === value8) {
     gameOver = true;
-    if (value6 === "blue") { winnerMessage = "Player 1 (Blue/X) wins!"; } else { winnerMessage = "Player 2 (Red/O) wins!"; }
+    if (value6 === "blue") {
+      winnerMessage = "Player 1 (Blue/X) wins!";
+    } else {
+      winnerMessage = "Player 2 (Red/O) wins!";
+    }
   } else if (value0 !== "purple" && value0 === value3 && value3 === value6) {
     gameOver = true;
-    if (value0 === "blue") { winnerMessage = "Player 1 (Blue/X) wins!"; } else { winnerMessage = "Player 2 (Red/O) wins!"; }
+    if (value0 === "blue") {
+      winnerMessage = "Player 1 (Blue/X) wins!";
+    } else {
+      winnerMessage = "Player 2 (Red/O) wins!";
+    }
   } else if (value1 !== "purple" && value1 === value4 && value4 === value7) {
     gameOver = true;
-    if (value1 === "blue") { winnerMessage = "Player 1 (Blue/X) wins!"; } else { winnerMessage = "Player 2 (Red/O) wins!"; }
+    if (value1 === "blue") {
+      winnerMessage = "Player 1 (Blue/X) wins!";
+    } else {
+      winnerMessage = "Player 2 (Red/O) wins!";
+    }
   } else if (value2 !== "purple" && value2 === value5 && value5 === value8) {
     gameOver = true;
-    if (value2 === "blue") { winnerMessage = "Player 1 (Blue/X) wins!"; } else { winnerMessage = "Player 2 (Red/O) wins!"; }
+    if (value2 === "blue") {
+      winnerMessage = "Player 1 (Blue/X) wins!";
+    } else {
+      winnerMessage = "Player 2 (Red/O) wins!";
+    }
   } else if (value0 !== "purple" && value0 === value4 && value4 === value8) {
     gameOver = true;
-    if (value0 === "blue") { winnerMessage = "Player 1 (Blue/X) wins!"; } else { winnerMessage = "Player 2 (Red/O) wins!"; }
+    if (value0 === "blue") {
+      winnerMessage = "Player 1 (Blue/X) wins!";
+    } else {
+      winnerMessage = "Player 2 (Red/O) wins!";
+    }
   } else if (value2 !== "purple" && value2 === value4 && value4 === value6) {
     gameOver = true;
-    if (value2 === "blue") { winnerMessage = "Player 1 (Blue/X) wins!"; } else { winnerMessage = "Player 2 (Red/O) wins!"; }
+    if (value2 === "blue") {
+      winnerMessage = "Player 1 (Blue/X) wins!";
+    } else {
+      winnerMessage = "Player 2 (Red/O) wins!";
+    }
   }
 
   // if nobody won and every square is filled, its a tie: just clear the board and keep playing
