@@ -199,7 +199,7 @@ function draw() {
 
   text('8  Hornet end Knight',250,1400,);
   
-  // De volgende keer is het makkelijker om het in twee aparte tekeningen te splitsen.
+  // De volgende keer is het makkelijker om het in twee aparte tekeningen te splitsen. 
   let rijen = [ 
   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
   [0,0,0,0,0,0,0,0,0,0,0,0,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
