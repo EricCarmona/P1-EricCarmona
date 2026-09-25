@@ -10,7 +10,7 @@ function draw() {
   fill(255);
   stroke(0);
   strokeWeight(4);
-  text('1     Eric Carmoina Castaño',50,50,);
+  text('1     Eric Carmona Castaño',50,50,);
 
 
   // Vlag Spanje en Colombia
