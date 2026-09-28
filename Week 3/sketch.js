@@ -286,6 +286,7 @@ function mouseClicked() {
     } else {
       winnerMessage = "Player 2 (Red/O) wins!";
     }
+    
   } else if (value3 !== "purple" && value3 === value4 && value4 === value5) {
     gameOver = true;
     if (value3 === "blue") {
@@ -293,6 +294,7 @@ function mouseClicked() {
     } else {
       winnerMessage = "Player 2 (Red/O) wins!";
     }
+    
   } else if (value6 !== "purple" && value6 === value7 && value7 === value8) {
     gameOver = true;
     if (value6 === "blue") {
@@ -300,6 +302,7 @@ function mouseClicked() {
     } else {
       winnerMessage = "Player 2 (Red/O) wins!";
     }
+    
   } else if (value0 !== "purple" && value0 === value3 && value3 === value6) {
     gameOver = true;
     if (value0 === "blue") {
@@ -307,6 +310,7 @@ function mouseClicked() {
     } else {
       winnerMessage = "Player 2 (Red/O) wins!";
     }
+    
   } else if (value1 !== "purple" && value1 === value4 && value4 === value7) {
     gameOver = true;
     if (value1 === "blue") {
@@ -314,6 +318,7 @@ function mouseClicked() {
     } else {
       winnerMessage = "Player 2 (Red/O) wins!";
     }
+    
   } else if (value2 !== "purple" && value2 === value5 && value5 === value8) {
     gameOver = true;
     if (value2 === "blue") {
@@ -321,6 +326,7 @@ function mouseClicked() {
     } else {
       winnerMessage = "Player 2 (Red/O) wins!";
     }
+    
   } else if (value0 !== "purple" && value0 === value4 && value4 === value8) {
     gameOver = true;
     if (value0 === "blue") {
@@ -328,6 +334,7 @@ function mouseClicked() {
     } else {
       winnerMessage = "Player 2 (Red/O) wins!";
     }
+    
   } else if (value2 !== "purple" && value2 === value4 && value4 === value6) {
     gameOver = true;
     if (value2 === "blue") {
@@ -335,6 +342,7 @@ function mouseClicked() {
     } else {
       winnerMessage = "Player 2 (Red/O) wins!";
     }
+    
   }
 
   // if nobody won and every square is filled, its a tie: just clear the board and keep playing
