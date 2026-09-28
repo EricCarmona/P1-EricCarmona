@@ -10,7 +10,7 @@ function draw() {
   fill(255);
   stroke(0);
   strokeWeight(4);
-  text('1     Eric Carmoina Castaño',50,50,);
+  text('1     Eric Carmona Castaño',50,50,);
 
 
   // Vlag Spanje en Colombia
@@ -199,7 +199,7 @@ function draw() {
 
   text('8  Hornet end Knight',250,1400,);
   
-  // De volgende keer is het makkelijker om het in twee aparte tekeningen te splitsen.
+  // De volgende keer is het makkelijker om het in twee aparte tekeningen te splitsen. 
   let rijen = [ 
   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
   [0,0,0,0,0,0,0,0,0,0,0,0,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
