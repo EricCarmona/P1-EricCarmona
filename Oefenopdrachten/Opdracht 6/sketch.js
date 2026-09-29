@@ -1,5 +1,15 @@
+let numerRandom = [];
+let totalRandom = 0;
+
 function setup() {
   createCanvas(380, 350);
+
+  // Genereert de waarden slechts één keer, wanneer de pagina wordt geladen.
+  for (let i = 0; i < 12; i++) {
+    let num = round(random(0, 100));
+    numerRandom.push(num);
+    totalRandom += num;
+  }
 }
 
 function draw() {
@@ -184,35 +194,24 @@ function draw() {
     rect(140 + i * 30, 275, 30, 30);
   }
   pop();
+
+
+  // ========================================== //
+  // Random getallen en hun gemiddelde //
+  // ========================================== //
+  push();
+  fill(0);
+  textSize(12);
+  text(`9.`, 240, 15);
+
+  // Toon de getallen onder elkaar.
+  for (let i = 0; i < numerRandom.length; i++) {
+    text(numerRandom[i], 240, 35 + i * 16);
+  }
+
+  // Toon het totaal en het gemiddelde van de afgeronde getallen.
+  let averageRandom = round(totalRandom / numerRandom.length);
+  text(`Totaal: ${totalRandom}`, 240, 245);
+  text(`Gemiddelde: ${averageRandom}`, 240, 265);
+  pop();
 }
-
-
-
-
-
-
-
-
-/*// ========================================== //
-
-o 9. (x: 240, y: 15)
-
-9: Random getallen en hun gemiddelde
-
-. Vul een array met 12 random() getallen tussen de
-0 en de 100. Gebruik hiervoor een for loop.
-. Rond je getallen af met de round() functie.
-· Laat de getallen onder elkaar zien op de canvas.
-. Voeg een nieuwe regel er aan toe waarin je
-het totaal van alle getallen laat zien.
-. Voeg nog een regel toe waarmee je
-het gemiddelde aantoont.
-
-Afronden: Licht je code toe en breidt uit!
-
-. Voeg commentaar toe aan je code om het
-leesbaar te houden en anderen te helpen
-begrijpen wat elke sectie doet.
-· Gebruik enkele regel commentaar (//) of
-// meerdere regels commentaar (/* ... */
-// ========================================== //*/
