@@ -63,8 +63,40 @@ function draw() {
     textSize(12);
     text(`3. `, 20, 190);
 
+    colors.splice(1, 2);
+
+    for (let i = 0; i < colors.length; i++) {
+        fill(colors[i]);
+        textStyle(BOLD);
+        textSize(10);
+        text(colors[i], 35, 15 * i + 190);
+    };
     pop();
 
+
+    // ========================================== //
+    // Getallen filteren //
+    // ========================================== //
+    push();
+    fill(0);
+    textSize(12);
+    text(`4. `, 20, 250);
+
+    let nummerfilter = [];
+
+    for (let i = 0; i < nummers.length; i++) {
+        if (nummers[i] < 300) {
+            nummerfilter.push(nummers[i])
+        }
+    }
+
+    for (let i = 0; i < nummerfilter.length; i++) {
+        textStyle(BOLD);
+        textSize(10);
+        text(nummerfilter[i], 35, 15 * i + 250);
+    }
+
+    pop();
 }
 
 
@@ -75,29 +107,42 @@ function draw() {
 
 
 /*// ========================================== //
-o 4. (x: 20, y:250)
 o 5. (x: 120, y:15)
 o 6. (x: 120, y:100)
 o 7. (x: 120, y:190)
 o 8. (x: 120, y:280)
 o 9. (x: 240, y: 15)
 
-3: Twee kleuren weghalen
+5: Meerdere arrays optellen bij elkaar
 
-. Gebruik de .splice() functie om
-"blue" en "purple" weg te halen (2e en 3e kleur).
-. Schrijf een for loop die ieder woord uit de array op een losse regel op de
-canvas tekent, met de bijpassende kleur.
+· Maak twee arrays aan.
+o De eerste vul je met: 3, 55, 93, 20, 102 en 6
+o De tweede vul je met 14, 22, 80 en 5.
+. Schrijf een for loop die
+de getallen uit beide arrays bij elkaar optelt en laat
+het resultaat zien op de canvas.
 
-4: Getallen filteren
+6: Letters tellen
 
-. Maak een array met deze getallen er in: 400, 240, 10, 490, 30, 60, 244, 500, 301,
-300
+. Maak een variabele voor het woord "Overheidsfina
+ncieringstekort."
 
-· Maak een for loop die de getallen onder elkaar laat zien als ze kleiner dan
-300 zijn.
-· Zorg dat er geen "lege" regels ontstaan.
+. Tel met behulp van een for loop op hoe vaak de
+letter e voorkomt in
+het bovenstaande woord en laat dat zien in de
+canvas.
 
 Hint:
-Gebruik niet de teller van de for loop, maar een eigen variabele.
+
+Je kan over een stuk tekst itereren, tekst heef
+took een .length !
+
+7: Alfabetische volgorde
+
+. Maak een nieuwe
+array aan met daarin 5 stukken teksten: "red",
+"green", "blue", "purple" en "yellow"
+. Sorteer met .sort()
+de bovenstaande array op alfabetische volgorde e
+n laat het resultaat zien op de canvas.
 // ========================================== //*/
