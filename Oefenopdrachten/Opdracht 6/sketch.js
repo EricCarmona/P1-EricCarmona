@@ -142,6 +142,27 @@ function draw() {
     textSize(40);
     text(`${counter}x`, 150,150);
     pop();
+
+
+        // ========================================== //
+    // Meerdere arrays optellen bij elkaar //
+    // ========================================== //
+    push();
+    fill(0);
+    textSize(12);
+    text(`7. `, 120, 190);
+
+    colors.push("blue", "purple");
+    colors.sort();
+
+    for (let i = 0; i < colors.length; i++) {
+        fill(colors[i]);
+        textStyle(BOLD);
+        textSize(10);
+        text(colors[i], 135, 15 * i + 190);
+    };
+    pop();
+
 }
 
 
@@ -152,16 +173,44 @@ function draw() {
 
 
 /*// ========================================== //
-o 7. (x: 120, y:190)
+
 o 8. (x: 120, y:280)
 o 9. (x: 240, y: 15)
 
-7: Alfabetische volgorde
+8: Random kleuren op een rij
 
-. Maak een nieuwe
-array aan met daarin 5 stukken teksten: "red",
-"green", "blue", "purple" en "yellow"
-. Sorteer met .sort()
-de bovenstaande array op alfabetische volgorde e
-n laat het resultaat zien op de canvas.
+· Maak een programma dat een for-
+loop gebruikt om door een array van
+random() gekozen kleuren te itereren en ze op
+het canvas in een rij te tonen.
+
+Hint:
+
+· Vul de array van kleuren in de
+setup() functie, anders gebeurd het ied
+er frame.
+
+· Met color() heb je maar
+één array nodig. Je kan ook 3
+arrays maken (1 voor Rood,
+1 voor Groen en 1 voor Blauw waardes.
+
+9: Random getallen en hun gemiddelde
+
+. Vul een array met 12 random() getallen tussen de
+0 en de 100. Gebruik hiervoor een for loop.
+. Rond je getallen af met de round() functie.
+· Laat de getallen onder elkaar zien op de canvas.
+. Voeg een nieuwe regel er aan toe waarin je
+het totaal van alle getallen laat zien.
+. Voeg nog een regel toe waarmee je
+het gemiddelde aantoont.
+
+Afronden: Licht je code toe en breidt uit!
+
+. Voeg commentaar toe aan je code om het
+leesbaar te houden en anderen te helpen
+begrijpen wat elke sectie doet.
+· Gebruik enkele regel commentaar (//) of
+// meerdere regels commentaar (/* ... */
 // ========================================== //*/
