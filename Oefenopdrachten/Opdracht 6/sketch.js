@@ -118,6 +118,30 @@ function draw() {
     textSize(40);
     text(total, 140, 65);
     pop();
+
+
+    // ========================================== //
+    // Meerdere arrays optellen bij elkaar //
+    // ========================================== //
+    push();
+    fill(0);
+    textSize(12);
+    text(`6. `, 120, 100);
+
+    let word = "Overheidsfinancieringstekort";
+    let letterFilter = "e";
+    let counter = 0;
+
+    for (let i = 0; i < word.length; i++) {
+        if (word[i] === letterFilter) {
+            counter++;
+        }
+    }
+
+    textStyle(BOLD);
+    textSize(40);
+    text(`${counter}x`, 150,150);
+    pop();
 }
 
 
@@ -128,25 +152,9 @@ function draw() {
 
 
 /*// ========================================== //
-o 6. (x: 120, y:100)
 o 7. (x: 120, y:190)
 o 8. (x: 120, y:280)
 o 9. (x: 240, y: 15)
-
-6: Letters tellen
-
-. Maak een variabele voor het woord "Overheidsfina
-ncieringstekort."
-
-. Tel met behulp van een for loop op hoe vaak de
-letter e voorkomt in
-het bovenstaande woord en laat dat zien in de
-canvas.
-
-Hint:
-
-Je kan over een stuk tekst itereren, tekst heef
-took een .length !
 
 7: Alfabetische volgorde
 
