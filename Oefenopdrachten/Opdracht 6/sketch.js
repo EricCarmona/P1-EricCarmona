@@ -9,8 +9,8 @@ function draw() {
     // ========================================== //
     let colors = ["red", "green", "blue", "purple", "yellow"];
     let nummers = [400, 240, 10, 490, 30, 60, 244, 500, 301, 300];
-    let sum1 = [];
-    let sum2 = [];
+    let sum1 = [3, 55, 93, 20, 102, 6];
+    let sum2 = [14, 22, 80, 5];
 
     push();
     textSize(8);
@@ -32,7 +32,6 @@ function draw() {
         text(colors[i], 35, 15 * i + 15);
     };
     pop();
-
 
 
     // ========================================== //
@@ -95,7 +94,29 @@ function draw() {
         textSize(10);
         text(nummerfilter[i], 35, 15 * i + 250);
     }
+    pop();
 
+
+    // ========================================== //
+    // Meerdere arrays optellen bij elkaar //
+    // ========================================== //
+    push();
+    fill(0);
+    textSize(12);
+    text(`5. `, 120, 15);
+
+    let total = 0;
+
+    for (let i = 0; i < sum1.length; i++) {
+        total += sum1[i];
+    }
+    for (let i = 0; i < sum2.length; i++) {
+        total += sum2[i];
+    }
+
+    textStyle(BOLD);
+    textSize(40);
+    text(total, 140, 65);
     pop();
 }
 
@@ -107,20 +128,10 @@ function draw() {
 
 
 /*// ========================================== //
-o 5. (x: 120, y:15)
 o 6. (x: 120, y:100)
 o 7. (x: 120, y:190)
 o 8. (x: 120, y:280)
 o 9. (x: 240, y: 15)
-
-5: Meerdere arrays optellen bij elkaar
-
-· Maak twee arrays aan.
-o De eerste vul je met: 3, 55, 93, 20, 102 en 6
-o De tweede vul je met 14, 22, 80 en 5.
-. Schrijf een for loop die
-de getallen uit beide arrays bij elkaar optelt en laat
-het resultaat zien op de canvas.
 
 6: Letters tellen
 
