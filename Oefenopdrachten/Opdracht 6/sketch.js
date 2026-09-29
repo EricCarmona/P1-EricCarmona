@@ -29,14 +29,41 @@ function draw() {
         fill(colors[i]);
         textStyle(BOLD);
         textSize(10);
-        text(colors[i], 35, 20 * i + 15);
+        text(colors[i], 35, 15 * i + 15);
     };
     pop();
 
 
-    
+
+    // ========================================== //
+    // Pas de array aan met pop //
+    // ========================================== //
+    push();
+    fill(0);
+    textSize(12);
+    text(`2. `, 20, 100);
+
+    colors.shift();
+    colors.push("red");
+
+    for (let i = 0; i < colors.length; i++) {
+        fill(colors[i]);
+        textStyle(BOLD);
+        textSize(10);
+        text(colors[i], 35, 15 * i + 100);
+    };
+    pop();
 
 
+    // ========================================== //
+    // Twee kleuren weghalen //
+    // ========================================== //
+    push();
+    fill(0);
+    textSize(12);
+    text(`3. `, 20, 190);
+
+    pop();
 
 }
 
@@ -48,21 +75,12 @@ function draw() {
 
 
 /*// ========================================== //
-o 2. (x:20, y:100)
-o 3. (x: 20, y:190)
 o 4. (x: 20, y:250)
 o 5. (x: 120, y:15)
 o 6. (x: 120, y:100)
 o 7. (x: 120, y:190)
 o 8. (x: 120, y:280)
 o 9. (x: 240, y: 15)
-
-2: Pas de array aan met pop
-
-. Gebruik de .shift() en .push() functies op de array om
-de eerste kleur weg te halen en aan het einde weer toe te voegen.
-. Schrijf een for loop die ieder woord uit de array op een losse regel op de
-canvas tekent, met de bijpassende kleur.
 
 3: Twee kleuren weghalen
 
