@@ -1,12 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Week 4 - Generatieve Kunst</title>
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        min-height: 100%;
+        margin: 0;
+      }
+
+      body {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        background: radial-gradient(ellipse at center, #2d1735 0%, #0d0915 72%);
+      }
+
+      canvas {
+        display: block;
+        width: min(800px, calc(100vw - 32px), calc((100vh - 32px) * 4 / 3));
+        height: auto;
+        border: 1px solid rgba(75, 56, 88, 0.65);
+        box-shadow: 0 0 28px rgba(75, 56, 88, 0.24), 0 18px 64px rgba(0, 0, 0, 0.65);
+      }
+    </style>
 
     <script src="../libraries/p5.min.js"></script>
     <script src="../libraries/p5.sound.min.js"></script>
