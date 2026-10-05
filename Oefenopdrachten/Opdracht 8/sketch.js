@@ -25,6 +25,16 @@ function draw() {
   tekenText("purple", 20);
   pop();
 
+  push();
+  textSize(20);
+  fill(0);
+  textStyle(BOLD);
+  text(optellen(69, 22), 645, 80);
+  text(deelt(30, 2), 645, 100);
+  text(multiply(200, 5), 645, 120);
+  text(aftrekt(32, 65), 645, 140);
+  pop();
+
 }
 
 // ========================================== //
@@ -62,6 +72,26 @@ function tekenLine(x, y) {
 function tekenText(color, Size) {
   fill(color);
   textSize(Size);
-  text(`Hello World`,600,50)
+  text(`Hello World`, 600, 50)
 
+}
+
+
+// ========================================== //
+// 3. Return //
+// ========================================== //
+function optellen(a, b) {
+  return a + b;
+}
+
+function deelt(a, b) {
+  return a / b;
+}
+
+function multiply(a, b) {
+  return a * b;
+}
+
+function aftrekt (a, b) {
+  return a - b;
 }
