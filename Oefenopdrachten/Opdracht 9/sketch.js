@@ -2,7 +2,9 @@
 let circles = { cirX: [], cirY: [], cirSize: [], col: [], cirSpeedX: [], cirSpeedY: [] };
 let counter = 0;
 let gameWon = false;
-const WIN_TARGET = 3;
+let gameLosser = false;
+const WIN_TARGET = 10;
+const LOSE_TARGET = -3;
 
 // Create the canvas and start a new game
 function setup() {
@@ -22,6 +24,15 @@ function draw() {
     textSize(28);
     fill(120, 90, 70);
     text("¡HAS GANADO!", width / 2, height / 2);
+    pop();
+    return;
+  } else if (gameLosser) {
+    push();
+    textAlign(CENTER, CENTER);
+    textStyle(BOLD);
+    textSize(28);
+    fill(0, 90, 90);
+    text("¡HAS PERDIDO!", width / 2, height / 2);
     pop();
     return;
   }
@@ -50,6 +61,7 @@ function draw() {
 function resetGame() {
   counter = 0;
   gameWon = false;
+  gameLosser = false;
   circles.cirX = [];
   circles.cirY = [];
   circles.cirSize = [];
@@ -93,7 +105,7 @@ function randomCircles() {
 
 // Handle clicks and restart after winning
 function mousePressed() {
-  if (gameWon) {
+  if (gameWon || gameLosser) {
     resetGame();
     return;
   }
@@ -114,7 +126,10 @@ function mousePressed() {
 
       if (counter >= WIN_TARGET) {
         gameWon = true;
+      } else if (counter <= LOSE_TARGET) {
+        gameLosser = true;
       }
+      return;
     }
   }
 }
