@@ -1,136 +1,256 @@
 // ========================================== //
-// Array de objetos //
+// Array of quiz questions
 // ========================================== //
-let quizMonsterHunter = [
+let monsterHunterQuiz = [
   {
-    pregunta: "¿Qué variante de monstruo en Monster Hunter World: Iceborne es famosa por sus mohos mucosos volátiles, encerrarte en su arena final con barreras y volverse abrumadoramente agresivo con ataques explosivos cuando se enfurece?",
-    opciones: [
-      "A) Deviljho Salvaje",
-      "B) Brachydios Colérico",
-      "C) Nergigante Regio",
-      "D) Rajang Furia"
-    ],
-    respuestaCorrectaIndex: 1 // B) Brachydios Colérico (0-indexed: A=0, B=1, C=2, D=3)
+    question: "Which monster variant in Monster Hunter World: Iceborne is famous for its volatile slime, trapping you in its final arena with barriers, and becoming overwhelmingly aggressive with explosive attacks when enraged?",
+    options: ["A) Savage Deviljho", "B) Raging Brachydios", "C) Ruiner Nergigante", "D) Furious Rajang"],
+    correctAnswerIndex: 1
   },
   {
-    pregunta: "En Monster Hunter World, ¿cuál de las siguientes armas destaca por su capacidad de almacenar energía en frascos para luego desatar una serie de pequeñas explosiones elementales o de estado alterado mediante sus ataques?",
-    opciones: [
-      "A) Hacha Espada",
-      "B) Hacha Cargada",
-      "C) Cornamusa",
-      "D) Lanza Pistola"
-    ],
-    respuestaCorrectaIndex: 1 // B) Hacha Cargada
+    question: "In Monster Hunter World, which of the following weapons can store energy in phials and then unleash a series of small elemental or status explosions with its attacks?",
+    options: ["A) Switch Axe", "B) Charge Blade", "C) Hunting Horn", "D) Gunlance"],
+    correctAnswerIndex: 1
   },
   {
-    pregunta: "¿Cómo se llama el nuevo tipo de entorno dinámico y peligroso introducido en Monster Hunter Wilds que altera drásticamente el comportamiento de los monstruos y el clima del mapa?",
-    opciones: [
-      "A) Tormenta de Ceniza / Inclemencia",
-      "B) Erupción Constante",
-      "C) Marea Negra",
-      "D) Vórtice Abisal"
-    ],
-    respuestaCorrectaIndex: 0 // A) Tormenta de Ceniza / Inclemencia
+    question: "What is the name of the new, dynamic and dangerous environmental condition introduced in Monster Hunter Wilds that dramatically changes monster behavior and the map's weather?",
+    options: ["A) Ashen Outbreak / Inclement Weather", "B) Constant Eruption", "C) Black Tide", "D) Abyssal Vortex"],
+    correctAnswerIndex: 0
   },
   {
-    pregunta: "En Monster Hunter World: Iceborne, ¿qué nueva herramienta de la Eslinga (Slinger) permite engancharse directamente a la cabeza de los monstruos para debilitar partes, hacer que se estrellen contra los muros o recargar munición?",
-    opciones: [
-      "A) Garfio de Agarre",
-      "B) Gancho Magnético",
-      "C) Lanzador de Estacas",
-      "D) Arpón de Caza"
-    ],
-    respuestaCorrectaIndex: 0 // A) Garfio de Agarre
+    question: "In Monster Hunter World: Iceborne, which new Slinger tool lets you grapple directly onto a monster's head to wound parts, drive it into walls, or collect ammo?",
+    options: ["A) Clutch Claw", "B) Magnetic Hook", "C) Stake Launcher", "D) Hunting Harpoon"],
+    correctAnswerIndex: 0
   },
   {
-    pregunta: "¿Cuál de los siguientes monstruos clásicos de la saga se caracteriza por no atacar al cazador por iniciativa propia (siendo completamente pacífico al principio) a menos que tú lo provoques directamente?",
-    opciones: [
-      "A) Rajang",
-      "B) Barroth",
-      "C) Kelbi / Aptonoth",
-      "D) Bazelgeuse"
-    ],
-    respuestaCorrectaIndex: 2 // C) Kelbi / Aptonoth
+    question: "Which classic monster in the series does not attack hunters on its own and is completely peaceful at first, unless you provoke it?",
+    options: ["A) Rajang", "B) Barroth", "C) Kelbi / Aptonoth", "D) Bazelgeuse"],
+    correctAnswerIndex: 2
   },
   {
-    pregunta: "En Monster Hunter Wilds, ¿qué característica principal permite el nuevo Seikret (la montura oficial) durante la exploración y la caza?",
-    opciones: [
-      "A) Volar libremente por todo el mapa sin restricciones de estamina",
-      "B) Llevar una segunda arma equipada para poder cambiar de armamento sobre la marcha en plena cacería",
-      "C) Atacar automáticamente al monstruo mientras el cazador descansa",
-      "D) Escupir fuego para quemar los nidos de los monstruos pequeños"
-    ],
-    respuestaCorrectaIndex: 1 // B) Llevar una segunda arma equipada...
+    question: "In Monster Hunter Wilds, what is the Seikret's main feature during exploration and hunts?",
+    options: ["A) Fly freely across the entire map", "B) Carry a second equipped weapon", "C) Attack automatically", "D) Spit fire at small monsters"],
+    correctAnswerIndex: 1
   },
   {
-    pregunta: "¿Qué monstruo insignia (flagship) de Monster Hunter World utiliza espinas en sus alas y cuerpo que se vuelven negras a medida que se endurecen, obligando al jugador a romperlas constantemente?",
-    opciones: [
-      "A) Rathalos",
-      "B) Nergigante",
-      "C) Velkhana",
-      "D) Tigrex"
-    ],
-    respuestaCorrectaIndex: 1 // B) Nergigante
+    question: "Which flagship monster in Monster Hunter World has spikes on its wings and body that turn black as they harden, forcing players to keep breaking them?",
+    options: ["A) Rathalos", "B) Nergigante", "C) Velkhana", "D) Tigrex"],
+    correctAnswerIndex: 1
   },
   {
-    pregunta: "En las mecánicas de daño por segundo y velocidad en Monster Hunter World, ¿cuál de estas armas suele registrar consistentemente los tiempos de cacería más rápidos en manos de jugadores expertos debido a su enorme daño de corte y movilidad?",
-    opciones: [
-      "A) Ballesta Ligera",
-      "B) Gran Espada",
-      "C) Hacha Espada",
-      "D) Espada y Escudo"
-    ],
-    respuestaCorrectaIndex: 1 // B) Gran Espada
+    question: "In Monster Hunter World damage-per-second and speed rankings, which weapon often achieves the fastest hunt times in the hands of expert players thanks to its high cutting damage and mobility?",
+    options: ["A) Light Bowgun", "B) Great Sword", "C) Switch Axe", "D) Sword and Shield"],
+    correctAnswerIndex: 1
   },
   {
-    pregunta: "¿Cuál es el nombre del dragón anciano de hielo que sirve como monstruo insignia (flagship) de la expansión Monster Hunter World: Iceborne?",
-    opciones: [
-      "A) Vaal Hazak",
-      "B) Namielle",
-      "C) Velkhana",
-      "D) Shara Ishvalda"
-    ],
-    respuestaCorrectaIndex: 2 // C) Velkhana
+    question: "What is the name of the ice Elder Dragon that serves as the flagship monster of the Monster Hunter World: Iceborne expansion?",
+    options: ["A) Vaal Hazak", "B) Namielle", "C) Velkhana", "D) Shara Ishvalda"],
+    correctAnswerIndex: 2
   },
   {
-    pregunta: "¿Qué monstruo volador en Monster Hunter World es famoso por aparecer por sorpresa en cualquier zona del mapa lanzando bombas con forma de piña (escamas explosivas) desde el cielo?",
-    opciones: [
-      "A) Rathian",
-      "B) Bazelgeuse",
-      "C) Legiana",
-      "D) Paolumu"
-    ],
-    respuestaCorrectaIndex: 1 // B) Bazelgeuse
+    question: "Which flying monster in Monster Hunter World is famous for suddenly appearing in any area and dropping pineapple-shaped bombs (explosive scales) from the sky?",
+    options: ["A) Rathian", "B) Bazelgeuse", "C) Legiana", "D) Paolumu"],
+    correctAnswerIndex: 1
   }
 ];
 
-function setup() {
-  createCanvas(400, 400);
-  for (let i = 0; i < quizMonsterHunter.length; i++) {
-    console.log(quizMonsterHunter[i].pregunta);
-    console.log(quizMonsterHunter[i].opciones);
-    console.log(quizMonsterHunter[i].respuestaCorrectaIndex);
-    
-  }
+// Globale besturingsvariabelen
+let button;
+let page = 0;
+let score = 0; // Bewaart de eindscore van de speler
 
-  
+let isStartScreen = true;
+let isGameActive = false;
+let isEndScreen = false;
+
+function setup() {
+  createCanvas(800, 600);
+
+  // Maak een grote startknop en plaats deze in het midden
+  button = createButton('START QUIZ');
+  button.position(300, 260); // Gecentreerd op het canvas van 800x600
+  button.size(200, 80);      // Groot en comfortabel formaat
+  button.style('background-color', '#4CAF50');
+  button.style('color', '#ffffff');
+  button.style('font-size', '20px');
+  button.style('font-weight', 'bold');
+  button.style('border-radius', '10px');
+  button.mousePressed(changeScreen);
 }
 
 function draw() {
   background(220);
+
+  if (isStartScreen == true) {
+    // Startscherm
+    fill(0);
+    textSize(32);
+    textAlign(CENTER);
+    text("Monster Hunter Trivia", 400, 150);
+    textSize(16);
+    text("Show off your knowledge of the Hunter's Guild", 400, 200);
+
+  } else if (isGameActive == true) {
+    // Toon de actieve quiz
+    displayQuestions();
+
+  } else if (isEndScreen == true) {
+    // Eindscherm
+    fill(0);
+    textSize(32);
+    textAlign(CENTER);
+    text("The Hunt Is Over!", 400, 150);
+    textSize(24);
+    text("Your final score: " + score + " / 10", 400, 220);
+  }
 }
 
+function changeScreen() {
+  if (isStartScreen == true) {
+    isStartScreen = false;
+    isGameActive = true;
 
+    // Verberg de hoofdknop tijdens het spel; antwoorden worden aangeklikt
+    button.hide();
 
+  } else if (isGameActive == true) {
+    isGameActive = false;
+    isEndScreen = true;
 
+    // Toon de knop op het eindscherm om opnieuw te beginnen
+    button.show();
+    button.position(300, 300);
+    button.html("Play Again");
+    button.style('background-color', '#e01212');
 
-/*// ========================================== //
-seran 10 preguntas en dotal del tema del video juego monter huneter con sus repentibas respuestas en cada caso seran (4) una buena y las restantes malas
+  } else if (isEndScreen == true) {
+    // Zet het spel terug naar de beginstand
+    isEndScreen = false;
+    isStartScreen = true;
+    page = 0;
+    score = 0;
 
-Principalmente la idea es aplicar varias img para facilitar la respuesta tambien por intuicion.
+    button.position(300, 260);
+    button.size(200, 80);
+    button.html("START QUIZ");
+    button.style('background-color', '#4CAF50');
+  }
+}
 
-al finalizar el quiz se enseñáran cuales an sido las respuestas correctas y cuales an sido las incorrectas y tu puntucion correcta.
+function displayQuestions() {
+  // Stel de uitlijning van de vragen in
+  textAlign(LEFT);
+  fill(0);
+  textSize(22);
 
-POR AHORA DEVO PENSAR EN ALGO SENCILLO Y TRATAR DE CONSEGIRLO SIN COMPLICARME MUCHO...  
+  // Beperk de tekstbreedte zodat de vraag binnen het canvas blijft
+  text(monsterHunterQuiz[page].question, 50, 50, 700, 150);
 
-// ========================================== //*/
+  // Basiscoördinaten voor de vier antwoordvakken
+  let boxX = 50;
+  let boxWidth = 700;
+  let boxHeight = 60;
+
+  // ========================================== //
+  // Vak 0 (optie A) met hover-effect
+  // ========================================== //
+  // Controleer of de muis zich binnen het eerste vak bevindt
+  if (mouseX > boxX && mouseX < boxX + boxWidth && mouseY > 220 && mouseY < 220 + boxHeight) {
+    fill(180); // Donkergrijs wanneer de muis erboven staat
+  } else {
+    fill(255); // Standaard wit
+  }
+  rect(boxX, 220, boxWidth, boxHeight, 5);
+  fill(0);
+  textSize(16);
+  text(monsterHunterQuiz[page].options[0], boxX + 20, 255);
+
+  // ========================================== //
+  // Vak 1 (optie B) met hover-effect
+  // ========================================== //
+  if (mouseX > boxX && mouseX < boxX + boxWidth && mouseY > 300 && mouseY < 300 + boxHeight) {
+    fill(180);
+  } else {
+    fill(255);
+  }
+  rect(boxX, 300, boxWidth, boxHeight, 5);
+  fill(0);
+  text(monsterHunterQuiz[page].options[1], boxX + 20, 335);
+
+  // ========================================== //
+  // Vak 2 (optie C) met hover-effect
+  // ========================================== //
+  if (mouseX > boxX && mouseX < boxX + boxWidth && mouseY > 380 && mouseY < 380 + boxHeight) {
+    fill(180);
+  } else {
+    fill(255);
+  }
+  rect(boxX, 380, boxWidth, boxHeight, 5);
+  fill(0);
+  text(monsterHunterQuiz[page].options[2], boxX + 20, 415);
+
+  // ========================================== //
+  // Vak 3 (optie D) met hover-effect
+  // ========================================== //
+  if (mouseX > boxX && mouseX < boxX + boxWidth && mouseY > 460 && mouseY < 460 + boxHeight) {
+    fill(180);
+  } else {
+    fill(255);
+  }
+  rect(boxX, 460, boxWidth, boxHeight, 5);
+  fill(0);
+  text(monsterHunterQuiz[page].options[3], boxX + 20, 495);
+}
+
+// ========================================== //
+// Detecteer klikken op de antwoordvakken
+// ========================================== //
+function mousePressed() {
+  // Verwerk antwoorden alleen op het spelscherm
+  if (isGameActive == true) {
+
+    let boxWidth = 700;
+    let boxHeight = 60;
+    let selectedOption = -1; // -1 betekent dat er nog geen antwoord is gekozen
+
+    // Controleer of vak 0 is aangeklikt
+    if (mouseX > 50 && mouseX < 50 + boxWidth && mouseY > 220 && mouseY < 220 + boxHeight) {
+      selectedOption = 0;
+    }
+    // Controleer of vak 1 is aangeklikt
+    else if (mouseX > 50 && mouseX < 50 + boxWidth && mouseY > 300 && mouseY < 300 + boxHeight) {
+      selectedOption = 1;
+    }
+    // Controleer of vak 2 is aangeklikt
+    else if (mouseX > 50 && mouseX < 50 + boxWidth && mouseY > 380 && mouseY < 380 + boxHeight) {
+      selectedOption = 2;
+    }
+    // Controleer of vak 3 is aangeklikt
+    else if (mouseX > 50 && mouseX < 50 + boxWidth && mouseY > 460 && mouseY < 460 + boxHeight) {
+      selectedOption = 3;
+    }
+
+    // Ga alleen verder als de speler een van de vier vakken heeft aangeklikt
+    if (selectedOption != -1) {
+
+      // Vergelijk het gekozen antwoord met de juiste index in de array
+      if (selectedOption == monsterHunterQuiz[page].correctAnswerIndex) {
+        score = score + 1; // Geef een punt voor een goed antwoord
+      }
+
+      // Ga door naar de volgende vraag
+      page = page + 1;
+
+      // Beëindig het spel nadat alle tien vragen zijn beantwoord
+      if (page >= monsterHunterQuiz.length) {
+        // Schakel over naar het eindscherm met de bestaande schermlogica
+        isGameActive = false;
+        isEndScreen = true;
+        button.show();
+        button.position(300, 300);
+        button.html("Play Again");
+        button.style('background-color', '#e01212');
+      }
+    }
+  }
+}
