@@ -1,7 +1,10 @@
-let hpBar = 100;
-let hungerBar = 100;
-let energyBar = 100;
-let happyBar = 100;
+let bars = {
+  hpBar: 100,
+  hungerBar: 100,
+  energyBar: 100,
+  happyBar:100
+}
+
 
 let lastTime = 0;
 let isSleeping = false;
@@ -43,22 +46,22 @@ function draw() {
   fill("#4d4848");
   rect(20, 20, 400, 20);
   fill("#ff0000");
-  rect(20, 20, hpBar * 4, 20);
+  rect(20, 20, bars.hpBar * 4, 20);
 
   fill("#4d4848");
   rect(20, 45, 400, 20);
   fill("#815903");
-  rect(20, 45, hungerBar * 4, 20);
+  rect(20, 45, bars.hungerBar * 4, 20);
 
   fill("#4d4848");
   rect(20, 70, 400, 20);
   fill("#e5ff00");
-  rect(20, 70, energyBar * 4, 20);
+  rect(20, 70, bars.energyBar * 4, 20);
 
   fill("#4d4848");
   rect(20, 95, 400, 20);
   fill("#22ff05");
-  rect(20, 95, happyBar * 4, 20);
+  rect(20, 95, bars.happyBar * 4, 20);
 
   barStatus();
   checkDead();
@@ -73,54 +76,51 @@ function barStatus() {
   if (second() !== lastTime) {
     lastTime = second();
 
-    if (hungerBar > 0) {
-      hungerBar -= 0.5;
+    if (bars.hungerBar > 0) {
+      bars.hungerBar -= 0.5;
     }
-    if (energyBar > 0) {
-      energyBar -= 1.5;
+    if (bars.energyBar > 0) {
+      bars.energyBar -= 1.5;
     }
-    if (happyBar > 0) {
-      happyBar--;
+    if (bars.happyBar > 0) {
+      bars.happyBar--;
     }
   }
 }
 
 function auch() {
   if (!isSleeping) {
-    hpBar -= 15;
+    bars.hpBar -= 15;
   }
 }
 
 function sleep() {
   if (isSleeping) return;
 
-  if (energyBar >= 20) {
+  if (bars.energyBar >= 20) {
     alert("You are not tired enough to sleep yet.");
     return;
   }
 
   isSleeping = true;
-  console.log("The character has fallen asleep");
 
   setTimeout(function () {
-    energyBar = 100;
+    bars.energyBar = 100;
     isSleeping = false;
-    console.log("The character has woken up!");
   }, 5000);
 }
 
 function fainted() {
-  if (energyBar <= 0) {
+  if (bars.energyBar <= 0) {
     isSleeping = true;
-    hpBar -= 50;
-    energyBar = 0.1;
+    bars.hpBar -= 50;
+    bars.energyBar = 0.1;
 
     alert("You have fainted");
 
     setTimeout(function () {
-      energyBar = 100;
+      bars.energyBar = 100;
       isSleeping = false;
-      console.log("The character has woken up!");
     }, 5000);
   }
 }
@@ -128,21 +128,21 @@ function fainted() {
 function checkDead() {
   let deathMessage = "";
 
-  if (hpBar <= 0) {
+  if (bars.hpBar <= 0) {
     deathMessage = "You are dead";
-  } else if (hungerBar <= 0) {
+  } else if (bars.hungerBar <= 0) {
     deathMessage = "You died of starvation";
-  } else if (happyBar <= 0) {
+  } else if (bars.happyBar <= 0) {
     deathMessage = "You died of depression";
   }
 
   if (deathMessage !== "") {
     alert(deathMessage);
 
-    hpBar = 100;
-    hungerBar = 100;
-    happyBar = 100;
-    energyBar = 100;
+    bars.hpBar = 100;
+    bars.hungerBar = 100;
+    bars.happyBar = 100;
+    bars.energyBar = 100;
     isSleeping = false;
   }
 }
