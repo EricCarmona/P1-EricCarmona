@@ -1,3 +1,5 @@
+let teller = 0;
+
 function setup() {
   createCanvas(800, 700);
 }
@@ -5,8 +7,8 @@ function setup() {
 function draw() {
   background(200);
 
-  text(`X: ${int(mouseX)}`, 750, 20)
-  text(`Y: ${int(mouseY)}`, 750, 40)
+  text(`X: ${int(mouseX)}`, 750, 20);
+  text(`Y: ${int(mouseY)}`, 750, 40);
 
   // Titulos
   textSize(12);
@@ -17,11 +19,27 @@ function draw() {
   text("4. Beweeg de eightball met WASD of de pijltjestoetsen.", 360, 20);
 
 
+  // 1: Blokje laten verschijnen
   if (keyIsPressed === true) {
     if (keyCode === 66) {
-      rect(30, 30, 60, 60)
-    }
+      rect(30, 30, 60, 60);
+    };
   }
+
+  // 2: Teller
+  push();
+  textSize(50);
+  text(teller, 60, 190);
+  teller += 1;
+
+  if (teller >= 500) {
+    teller = 0;
+  } else if (keyIsPressed === true) {
+    if ( keyCode === 32)
+      teller = 0;
+  }
+  pop();
+  
 }
 
 /*// ========================================== //
@@ -30,4 +48,5 @@ Todd la informacion de la tarea lo podre encontrar en esta paguina: https://gluw
 
 https://www.toptal.com/developers/keycode
 B = 66
+Espacio = 32
 // ========================================== //*/
