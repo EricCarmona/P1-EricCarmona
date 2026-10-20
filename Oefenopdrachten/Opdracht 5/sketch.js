@@ -67,8 +67,8 @@ function draw() {
   for (let i = 0; i < 5; i++) {
     let ancho = 0 + i * 25;
     let alto = 0 + i * 38;
-    
-    fill(0, 0 , 255 - (i - 1) * 85);
+
+    fill(0, 0, 255 - (i - 1) * 85);
     rect(xActual1, 210, ancho, alto);
 
     xActual1 = ancho + xActual1
@@ -76,11 +76,21 @@ function draw() {
   pop();
 
 
-
-
-
-
+  // ========================================== //
+  // 5: 6 cirkels naast elkaar //
+  // ========================================== //
+  push();
   text("5.", 540, 20);
+
+  for (let i = 0; i < 5; i++) {
+    strokeWeight(i * 3);
+    circle(560 + i * 50, 45, 40);
+    textStyle(BOLD)
+    textSize(20)
+    text("8", 555 + i * 50, 52 )
+  }
+  pop();
+
   text("6.", 350, 105);
   text("7.", 625, 105);
 
