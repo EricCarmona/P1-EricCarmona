@@ -14,9 +14,9 @@ function draw() {
 
   for (let i = 0; i < 10; i++) {
     if (i === 6) {
-      fill("#0000ff")
+      fill("#0000ff");
     } else {
-      fill(255)
+      fill(255);
     }
     rect(20 + i * 50, 20, 50, 50);
   }
@@ -30,7 +30,7 @@ function draw() {
   text("2.", 20, 105);
 
   for (let i = 0; i < 5; i++) {
-    fill(i * 51)
+    fill(i * 51);
     rect(20, 110 + i * 50, 50, 50);
   }
   pop();
@@ -45,12 +45,33 @@ function draw() {
   let xActual = 80;
 
   for (let i = 0; i < 5; i++) {
-    let ancho = 0 + i * 25
+    let ancho = 0 + i * 25;
 
-    fill(0, (i - 1) * 64, 0)
-    rect(xActual, 120, ancho, 50)
+    fill(0, (i - 1) * 85, 0);
+    rect(xActual, 110, ancho, 50);
 
-    xActual = ancho + xActual
+    xActual = ancho + xActual;
+  }
+  pop();
+
+
+
+  // ========================================== //
+  // 4: 4 blauwe blokjes naast elkaar //
+  // ========================================== //
+  push();
+  text("4.", 80, 205);
+
+  let xActual1 = 80;
+
+  for (let i = 0; i < 5; i++) {
+    let ancho = 0 + i * 25;
+    let alto = 0 + i * 38;
+    
+    fill(0, 0 , 255 - (i - 1) * 85);
+    rect(xActual1, 210, ancho, alto);
+
+    xActual1 = ancho + xActual1
   }
   pop();
 
@@ -59,9 +80,6 @@ function draw() {
 
 
 
-
-
-  text("4.", 80, 205);
   text("5.", 540, 20);
   text("6.", 350, 105);
   text("7.", 625, 105);
