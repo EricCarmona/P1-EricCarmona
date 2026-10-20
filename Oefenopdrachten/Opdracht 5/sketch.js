@@ -14,7 +14,7 @@ function draw() {
 
   for (let i = 0; i < 10; i++) {
     if (i === 6) {
-      fill("#0478fd")
+      fill("#0000ff")
     } else {
       fill(255)
     }
@@ -36,8 +36,31 @@ function draw() {
   pop();
 
 
-
+  // ========================================== //
+  // 3: 4 blokjes naast elkaar //
+  // ========================================== //
+  push();
   text("3.", 80, 105);
+
+  let xActual = 80;
+
+  for (let i = 0; i < 5; i++) {
+    let ancho = 0 + i * 25
+
+    fill(0, (i - 1) * 64, 0)
+    rect(xActual, 120, ancho, 50)
+
+    xActual = ancho + xActual
+  }
+  pop();
+
+
+
+
+
+
+
+
   text("4.", 80, 205);
   text("5.", 540, 20);
   text("6.", 350, 105);
