@@ -6,95 +6,140 @@ function setup() {
 
 function draw() {
   background(220);
-
+  // ========================================== //
+  // 1: 10 blokjes op een rij //
+  // ========================================== //
   push();
-  fill("#0f0f0f");
-  textSize(12);
-  text("X: " + round(mouseX) + " | Y: " + round(mouseY), 710, 20);
-  pop();
+  text("1.", 20, 15);
 
-  // ========================================== //
-  // 10 blokjes op een rij //
-  // ========================================== //
-  fill(0);
-  text("1. ", 20, 15);
   for (let i = 0; i < 10; i++) {
-    if (i == 6) {
-      fill("blue");
+    if (i === 6) {
+      fill("#0000ff");
     } else {
-      fill("white");
+      fill(255);
     }
-    rect(20 + i * 50, 30, 50, 50);
-  }
-
-  // ========================================== //
-  // 5 blokjes onder elkaar //
-  // ========================================== //
-  fill(0);
-  text("2. ", 20, 105);
-  for (let i = 0; i < 5; i++) {
-    fill(i * 255 / 4);
-    rect(20, 120 + i * 50, 50, 50);
-  }
-
-  // ========================================== //
-  // 4 blokjes naast elkaar //
-  // ========================================== //
-  fill(0);
-  text("3. ", 80, 105);
-  for (let i = 0; i < 4; i++) {
-    fill(0, i * 255 / 3, 0);
-    rect(80 + 25 * i * (i + 1) / 2, 120, 25 + i * 25, 50);
-  }
-
-  // ========================================== //
-  // 4 blauwe blokjes naast elkaar //
-  // ========================================== //
-  fill(0);
-  text("4. ", 80, 205);
-  for (let i = 0; i < 4; i++) {
-    fill(0, 0, 255 - i * 255 / 3);
-    rect(80 + 25 * i * (i + 1) / 2, 220, 25 + i * 25, 50 + i * 25);
-  }
-
-  // ========================================== //
-  // 6 cirkels naast elkaar //
-  // ========================================== //
-  text("5. ", 540, 25);
-  push();
-  fill(255);
-  stroke(0);
-  for (let i = 0; i < 6; i++) {
-    strokeWeight(i * 2);
-    circle(540 + i * 30, 40, 20);
+    rect(20 + i * 50, 20, 50, 50);
   }
   pop();
 
+
   // ========================================== //
-  // Bullseye //
+  // 2: 5 blokjes onder elkaar //
   // ========================================== //
-  fill(0);
-  text("6. ", 350, 105);
   push();
-  noStroke();
+  text("2.", 20, 105);
+
+  for (let i = 0; i < 5; i++) {
+    fill(i * 51);
+    rect(20, 110 + i * 50, 50, 50);
+  }
+  pop();
+
+
+  // ========================================== //
+  // 3: 4 blokjes naast elkaar //
+  // ========================================== //
+  push();
+  text("3.", 80, 105);
+
+  let xActual = 80;
+
+  for (let i = 0; i < 5; i++) {
+    let ancho = 0 + i * 25;
+
+    fill(0, (i - 1) * 85, 0);
+    rect(xActual, 110, ancho, 50);
+
+    xActual = ancho + xActual;
+  }
+  pop();
+
+
+
+  // ========================================== //
+  // 4: 4 blauwe blokjes naast elkaar //
+  // ========================================== //
+  push();
+  text("4.", 80, 205);
+
+  let xActual1 = 80;
+
+  for (let i = 0; i < 5; i++) {
+    let ancho = 0 + i * 25;
+    let alto = 0 + i * 38;
+
+    fill(0, 0, 255 - (i - 1) * 85);
+    rect(xActual1, 210, ancho, alto);
+
+    xActual1 = ancho + xActual1
+  }
+  pop();
+
+
+  // ========================================== //
+  // 5: 6 cirkels naast elkaar //
+  // ========================================== //
+  push();
+  text("5.", 540, 20);
+
+  for (let i = 0; i < 5; i++) {
+    strokeWeight(i * 3);
+    circle(560 + i * 50, 45, 40);
+    textStyle(BOLD);
+    textSize(20);
+    text("8", 555 + i * 50, 52);
+  }
+  pop();
+
+
+  // ========================================== //
+  // 6: Bullseye //
+  // ========================================== //
+
+  /*// ========================================== //
+  El símbolo % se llama operador módulo. En programación, sirve para calcular el residuo (lo que sobra) de una división.
+  Cuando escribes i % 2, le estás diciendo a la computadora: "Divide i entre 2 y dime cuánto sobra".
+    Aquí está el truco de la matemática:
+      • Si un número es par (0, 2, 4, 6...) y lo divides entre 2, el residuo siempre es 0.
+      • Si un número es impar (1, 3, 5, 7...) y lo divides entre 2, el residuo siempre es 1.
+  // ========================================== //*/
+  push();
+  text("6.", 350, 105);
+
   for (let i = 0; i < 10; i++) {
     fill(i % 2 === 0 ? "red" : "white");
-    circle(500, 235, 180 - i * 18);
+    circle(480, 235, 255 - i * 26);
   }
   pop();
 
+
   // ========================================== //
-  // Accordeon //
-  // ========================================== //  
-  fill(0);
-  text("7. ", 625, 105);
+  // 7: Accordeon //
+  // ========================================== //
   push();
-  stroke(100);
-  strokeWeight(1);
+  text("7.", 625, 105);
+
   for (let i = 0; i < 21; i++) {
-    let width = i < 12 ? 30 + i * (90 / 11) : 120 - (i - 11) * 10;
-    fill(i % 2 === 0 ? 160 : 255);
-    rect(625, 120 + i * 10, width, 10);
+    fill(i % 2 === 0 ?  126 : 255);
+
+    if (i <= 10) {
+      rect(625, 110 + i * 10, 20 + i * 10, 10)
+    } else {
+      rect(625, 110 + i * 10, 220 - i * 10, 10)
+    }
   }
+  pop();
+
+
+  // ========================================== //
+  // Ajustes de cordenadas y Cursor //
+  // ========================================== //
+  push();
+  // line(x1, y1, x2, y2);
+  noCursor();
+  line(mouseX - 10, mouseY, mouseX + 10, mouseY);
+  line(mouseX, mouseY + 10, mouseX, mouseY - 10);
+  text(`X: ${int(mouseX)}`, 720, 390);
+  text(`Y: ${int(mouseY)}`, 760, 390);
   pop();
 }
