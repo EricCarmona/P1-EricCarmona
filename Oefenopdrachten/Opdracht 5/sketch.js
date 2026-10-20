@@ -85,16 +85,36 @@ function draw() {
   for (let i = 0; i < 5; i++) {
     strokeWeight(i * 3);
     circle(560 + i * 50, 45, 40);
-    textStyle(BOLD)
-    textSize(20)
-    text("8", 555 + i * 50, 52 )
+    textStyle(BOLD);
+    textSize(20);
+    text("8", 555 + i * 50, 52);
   }
   pop();
 
+
+  // ========================================== //
+  // 6: Bullseye //
+  // ========================================== //
+
+  /*// ========================================== //
+  El símbolo % se llama operador módulo. En programación, sirve para calcular el residuo (lo que sobra) de una división.
+  Cuando escribes i % 2, le estás diciendo a la computadora: "Divide i entre 2 y dime cuánto sobra".
+    Aquí está el truco de la matemática:
+      • Si un número es par (0, 2, 4, 6...) y lo divides entre 2, el residuo siempre es 0.
+      • Si un número es impar (1, 3, 5, 7...) y lo divides entre 2, el residuo siempre es 1.
+  // ========================================== //*/
+  push();
   text("6.", 350, 105);
+
+  for (let i = 0; i < 10; i++) {
+    fill(i % 2 === 0 ? "red" : "white");
+    circle(480, 235, 255 - i * 26);
+  }
+  pop();
+
+
+
   text("7.", 625, 105);
-
-
   // ========================================== //
   // Ajustes de cordenadas y Cursor //
   // ========================================== //
