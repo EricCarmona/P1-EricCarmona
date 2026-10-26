@@ -1,5 +1,5 @@
 let numerRandom = [];
-let totalRandom = 0;
+let total = 0;
 
 function setup() {
   createCanvas(380, 350);
@@ -8,7 +8,7 @@ function setup() {
   for (let i = 0; i < 12; i++) {
     let num = round(random(0, 100));
     numerRandom.push(num);
-    totalRandom += num;
+    total += num;
   }
 }
 
@@ -24,11 +24,12 @@ function draw() {
 
   push();
   textSize(8);
-  text(`X: ${mouseX} Y: ${mouseY}`, 320, 20)
+  textStyle(BOLD);
+  text(`X: ${int(mouseX)} Y: ${int(mouseY)}`, 320, 15)
   pop();
 
   // ========================================== //
-  // Kleuren in een array //
+  // 1: Kleuren in een array //
   // ========================================== //
   push();
   fill(0);
@@ -45,7 +46,7 @@ function draw() {
 
 
   // ========================================== //
-  // Pas de array aan met pop //
+  // 2: Pas de array aan met pop //
   // ========================================== //
   push();
   fill(0);
@@ -65,7 +66,7 @@ function draw() {
 
 
   // ========================================== //
-  // Twee kleuren weghalen //
+  // 3: Twee kleuren weghalen //
   // ========================================== //
   push();
   fill(0);
@@ -84,7 +85,7 @@ function draw() {
 
 
   // ========================================== //
-  // Getallen filteren //
+  // 4: Getallen filteren //
   // ========================================== //
   push();
   fill(0);
@@ -108,7 +109,7 @@ function draw() {
 
 
   // ========================================== //
-  // Meerdere arrays optellen bij elkaar //
+  //5: Meerdere arrays optellen bij elkaar //
   // ========================================== //
   push();
   fill(0);
@@ -131,7 +132,7 @@ function draw() {
 
 
   // ========================================== //
-  // Letters tellen //
+  // 6: Letters tellen //
   // ========================================== //
   push();
   fill(0);
@@ -155,7 +156,7 @@ function draw() {
 
 
   // ========================================== //
-  // Alfabetische volgorde //
+  // 7: Alfabetische volgorde //
   // ========================================== //
   push();
   fill(0);
@@ -175,7 +176,7 @@ function draw() {
 
 
   // ========================================== //
-  // Random kleuren op een rij //
+  // 8: Random kleuren op een rij //
   // ========================================== //
   push();
   fill(0);
@@ -197,7 +198,7 @@ function draw() {
 
 
   // ========================================== //
-  // Random getallen en hun gemiddelde //
+  // 9: Random getallen en hun gemiddelde //
   // ========================================== //
   push();
   fill(0);
@@ -206,12 +207,12 @@ function draw() {
 
   // Toon de getallen onder elkaar.
   for (let i = 0; i < numerRandom.length; i++) {
-    text(numerRandom[i], 240, 35 + i * 16);
+    text(numerRandom[i], 255, 15 + i * 16);
   }
 
   // Toon het totaal en het gemiddelde van de afgeronde getallen.
-  let averageRandom = round(totalRandom / numerRandom.length);
-  text(`Totaal: ${totalRandom}`, 240, 245);
-  text(`Gemiddelde: ${averageRandom}`, 240, 265);
+  let averageRandom = round(total / numerRandom.length);
+  text(`Totaal: ${total}`, 255, 230);
+  text(`Gemiddelde: ${averageRandom}`, 255, 250);
   pop();
 }
