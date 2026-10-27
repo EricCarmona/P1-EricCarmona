@@ -1,3 +1,12 @@
+let monedero = 1000000
+
+let alimentos = [
+  { nombre: "Manzana", puntos: 10, precio: 20 },
+  { nombre: "Pan", puntos: 25, precio: 50 },
+  { nombre: "Pastel", puntos: 100, precio: 150 }
+
+];
+
 let bars = {
   hpBar: 100,
   hungerBar: 100,
@@ -11,12 +20,24 @@ let lastTime = 0;
 function setup() {
   createCanvas(1000, 600);
 
-  // Botones de testeo
+  // Al hacer clic, se llama a alimentar con el objeto de la manzana.
+  let botonManzana = createButton("Manzana");
+  botonManzana.position(20, 130);
+  botonManzana.mousePressed(function() {
+    alimentar(alimentos[0]);
+  });
 
+  let botonPan = createButton("Pan");
+  botonPan.position(120, 130);
+  botonPan.mousePressed(function() {
+    alimentar(alimentos[1]);
+  });
 
-
-
-
+  let botonPastel = createButton("Pastel");
+  botonPastel.position(220, 130);
+  botonPastel.mousePressed(function() {
+    alimentar(alimentos[2]);
+  });
 }
 
 function draw() {
@@ -45,6 +66,11 @@ function draw() {
   rect(20, 95, 400, 20);
   fill("#22ff05");
   rect(20, 95, max(0, bars.happyBar) * 4, 20);
+
+  // Monedero
+  fill(0);
+  textSize(30);
+  text(monedero, 800, 40);
 
 
   estadoBarras();
@@ -86,6 +112,7 @@ function hambre() {
   }
 }
 
-function alimentos () {
-
+function alimentar(alimento) {
+  // Suma los puntos del alimento y limita el hambre a un máximo de 100.
+  bars.hungerBar = Math.min(100, bars.hungerBar + alimento.puntos);
 }
