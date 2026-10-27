@@ -112,7 +112,13 @@ function hambre() {
   }
 }
 
+
+/*// ========================================== //
+  Funcion de alimentar:
+
+  Suma los puntos del alimento y limita el hambre a un máximo de 100.
+  Al presionar los botones con los nombres de los alimentos, suma los puntos que tiene cada uno.
+// ========================================== //*/
 function alimentar(alimento) {
-  // Suma los puntos del alimento y limita el hambre a un máximo de 100.
   bars.hungerBar = Math.min(100, bars.hungerBar + alimento.puntos);
 }
