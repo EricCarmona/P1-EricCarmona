@@ -1,4 +1,16 @@
-let monedero = 1000
+// Monedero de jugador, se podra acumular monedas al jugar mini juegos.
+let monedero = 1000;
+
+// Inventario par guardar todo lo comprado en la tienda
+let inventario = [];
+
+let curaciones = [
+  { nombre: "Tiritas", puntos: 15, precio: 20 },
+  { nombre: "Vendas", puntos: 25, precio: 50 },
+  { nombre: "Pocion", puntos: 50, precio: 80 },
+  { nombre: "Kit medico", puntos: 100, precio: 180 },
+  { nombre: "Pocion Misteriosa", puntos: 1, estado: false } // la idea de una oportundad al usarlo no se podra reclamar mas.
+];
 
 let alimentos = [
   { nombre: "Manzana", puntos: 10, precio: 20 },
@@ -20,24 +32,33 @@ let lastTime = 0;
 function setup() {
   createCanvas(1000, 600);
 
-  // Al hacer clic, se llama a alimentar con el objeto de la manzana.
-  let botonManzana = createButton(`${alimentos[0].nombre} precio: ${alimentos[0].precio}`);
-  botonManzana.position(20, 50);
-  botonManzana.mousePressed(function() {
-    alimentar(alimentos[0]);
-  });
+  // test kit
+  let botonHit = createButton("hit");
+  botonHit.position(190, 100);
+  botonHit.mousePressed(hit)
 
-  let botonPan = createButton(`${alimentos[1].nombre} precio: ${alimentos[1].precio}`);
-  botonPan.position(20, 100);
-  botonPan.mousePressed(function() {
-    alimentar(alimentos[1]);
-  });
 
-  let botonPastel = createButton(`${alimentos[2].nombre} precio: ${alimentos[2].precio}`);
-  botonPastel.position(20, 150);
-  botonPastel.mousePressed(function() {
-    alimentar(alimentos[2]);
-  });
+  for (let i = 0; i < 4; i++) {
+    let cura = curaciones[i];
+    let botonCura = createButton(
+      `${cura.nombre} precio: ${cura.precio} La curación es de ${cura.puntos} puntos`
+    );
+    botonCura.position(250, 50 + i * 30);
+    botonCura.mousePressed(function () {
+      curacion(cura);
+    });
+  }
+
+  for (let i = 0; i < alimentos.length; i++) {
+    let alimento = alimentos[i];
+    let botonAlimento = createButton(
+      `${alimento.nombre} precio: ${alimento.precio}`
+    );
+    botonAlimento.position(20, 50 + i * 50);
+    botonAlimento.mousePressed(function () {
+      alimentar(alimento);
+    });
+  }
 }
 
 function draw() {
@@ -109,8 +130,13 @@ function hambre() {
   if (bars.hungerBar <= 0) {
     bars.hpBar -= 35;
     bars.hungerBar += 5;
+  } else if (bars.hungerBar  < 30) {
+    // el consumo de energia aumenta un 30 %
+  } else if (bars.hungerBar < 10 ) {
+    alimentos.puntos/2
   }
 }
+
 
 /*// ========================================== //
   Funcion de alimentar:
@@ -126,4 +152,25 @@ function alimentar(alimento) {
 
   monedero -= alimento.precio;
   bars.hungerBar = Math.min(100, bars.hungerBar + alimento.puntos);
+}
+
+
+// ========================================== //
+// Funciones de curacion //
+// ========================================== //
+
+function curacion(cura) {
+  if (monedero < cura.precio) {
+    alert(`No tienes suficiente dinero para comprar ${cura.nombre}.`);
+    return;
+  }
+
+  monedero -= cura.precio;
+  bars.hpBar = Math.min(100, bars.hpBar + cura.puntos);
+}
+
+
+// Funcion de prueba de daño
+function hit() {
+  bars.hpBar -= 24;
 }
