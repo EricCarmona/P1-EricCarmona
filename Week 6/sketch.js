@@ -1,4 +1,4 @@
-let monedero = 1000000
+let monedero = 1000
 
 let alimentos = [
   { nombre: "Manzana", puntos: 10, precio: 20 },
@@ -21,20 +21,20 @@ function setup() {
   createCanvas(1000, 600);
 
   // Al hacer clic, se llama a alimentar con el objeto de la manzana.
-  let botonManzana = createButton("Manzana");
-  botonManzana.position(20, 130);
+  let botonManzana = createButton(`${alimentos[0].nombre} precio: ${alimentos[0].precio}`);
+  botonManzana.position(20, 50);
   botonManzana.mousePressed(function() {
     alimentar(alimentos[0]);
   });
 
-  let botonPan = createButton("Pan");
-  botonPan.position(120, 130);
+  let botonPan = createButton(`${alimentos[1].nombre} precio: ${alimentos[1].precio}`);
+  botonPan.position(20, 100);
   botonPan.mousePressed(function() {
     alimentar(alimentos[1]);
   });
 
-  let botonPastel = createButton("Pastel");
-  botonPastel.position(220, 130);
+  let botonPastel = createButton(`${alimentos[2].nombre} precio: ${alimentos[2].precio}`);
+  botonPastel.position(20, 150);
   botonPastel.mousePressed(function() {
     alimentar(alimentos[2]);
   });
@@ -112,7 +112,6 @@ function hambre() {
   }
 }
 
-
 /*// ========================================== //
   Funcion de alimentar:
 
@@ -120,5 +119,11 @@ function hambre() {
   Al presionar los botones con los nombres de los alimentos, suma los puntos que tiene cada uno.
 // ========================================== //*/
 function alimentar(alimento) {
+  if (monedero < alimento.precio) {
+    alert(`No tienes suficiente dinero para comprar ${alimento.nombre}.`);
+    return;
+  }
+
+  monedero -= alimento.precio;
   bars.hungerBar = Math.min(100, bars.hungerBar + alimento.puntos);
 }
