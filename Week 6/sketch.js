@@ -1,5 +1,5 @@
 // The player can earn coins by playing minigames.
-let wallet = 1000000;
+let wallet = 100;
 
 let cures = [
   { name: "Bandages", points: 15, price: 20 },
@@ -17,10 +17,10 @@ let foods = [
 ];
 
 let bars = {
-  hpBar: 30,
-  hungerBar: 30,
+  hpBar: 100,
+  hungerBar: 100,
   energyBar: 30,
-  happyBar: 30
+  happyBar: 100
 };
 
 let lastTime = 0;
@@ -117,6 +117,17 @@ function setup() {
   canvasContainer = createDiv();
   canvasContainer.class("game-container");
   createCanvas(1000, 600).parent(canvasContainer);
+
+  let savedGame = getItem("gameState");
+  if (savedGame !== null) {
+    wallet = savedGame.wallet;
+    bars.hpBar = savedGame.hpBar;
+    bars.hungerBar = savedGame.hungerBar;
+    bars.energyBar = savedGame.energyBar;
+    bars.happyBar = savedGame.happyBar;
+    extraLives = savedGame.extraLives;
+  }
+
   pettingGif = createImg("assets/acariziando.gif", "Dog being petted");
   pettingGif.parent(canvasContainer);
   pettingGif.position(390, 190);
@@ -262,6 +273,15 @@ function updateButtons() {
   - Updates the status bars, wallet, and death screen.
 */
 function draw() {
+  storeItem("gameState", {
+    wallet: wallet,
+    hpBar: bars.hpBar,
+    hungerBar: bars.hungerBar,
+    energyBar: bars.energyBar,
+    happyBar: bars.happyBar,
+    extraLives: extraLives
+  });
+
   if (screen === "death") {
     drawDeath();
     return;
