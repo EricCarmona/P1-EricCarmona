@@ -7,15 +7,19 @@ body {
     width: 100%;
     min-height: 100%;
     margin: 0;
-    display: grid;
-    place-items: center;
 }
 
 body {
     min-height: 100vh;
     display: grid;
     place-items: center;
-.contenedor-canvas {
+    background-color: #30342f;
+    background-image:
+        repeating-linear-gradient(0deg, rgba(244, 230, 202, 0.025) 0 1px, transparent 1px 48px),
+        linear-gradient(135deg, #485044, #2c302b 58%, #514337);
+}
+
+.game-container {
     position: relative;
     width: 1000px;
     height: 600px;
@@ -48,12 +52,6 @@ button:active {
 button:focus-visible {
     outline: 3px solid #f3c969;
     outline-offset: 2px;
-}
-
-    background-color: #30342f;
-    background-image:
-        repeating-linear-gradient(0deg, rgba(244, 230, 202, 0.025) 0 1px, transparent 1px 48px),
-        linear-gradient(135deg, #485044, #2c302b 58%, #514337);
 }
 
 canvas {
