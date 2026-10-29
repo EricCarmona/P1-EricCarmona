@@ -1,22 +1,18 @@
 // Monedero de jugador, se podra acumular monedas al jugar mini juegos.
 let monedero = 100;
-const monedasIniciales = 100;
-
-// Inventario par guardar todo lo comprado en la tienda
-let inventario = [];
 
 let curaciones = [
   { nombre: "Tiritas", puntos: 15, precio: 20 },
   { nombre: "Vendas", puntos: 25, precio: 50 },
   { nombre: "Pocion", puntos: 50, precio: 80 },
   { nombre: "Kit medico", puntos: 100, precio: 180 },
-  { nombre: "Pocion Misteriosa", puntos: 1, estado: false } // la idea de una oportundad al usarlo no se podra reclamar mas.
 ];
 
 let alimentos = [
   { nombre: "Manzana", puntos: 10, precio: 20 },
   { nombre: "Pan", puntos: 25, precio: 50 },
-  { nombre: "Pastel", puntos: 100, precio: 150 }
+  { nombre: "Pastel", puntos: 100, precio: 150 },
+  { nombre: "Bebida energética", vida: -5, energia: 30, precio: 50 }
 
 ];
 
@@ -31,6 +27,7 @@ let lastTime = 0;
 let isSleeping = false;
 let pantalla = "menu";
 let botones = {};
+let contenedorCanvas;
 let bolas = [];
 let jugadorX = 500;
 let jugadorY = 520;
@@ -43,86 +40,187 @@ let vidasExtra = 0;
 let progresoKonami = 0;
 let codigoKonami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
 
-function setup() {
-  createCanvas(1000, 600);
+let imagenPerrito;
+let imagenSala;
+let imagenCocina;
+let imagenDormitorioDia;
+let imagenDormitorioNoche;
+let imagenMedico;
+let imagenFondoMinijuegos;
+let imagenFondoTiro;
+let imagenFondoEspacio;
+let imagenPerritosAliens;
+let imagenSniperPerro;
+let imagenPerroCocinero;
+let imagenDoctor;
+let imagenEnojado;
+let imagenAlimentame;
+let imagenCansado;
+let imagenTriste;
+let imagenPerroAdios;
+let imagenMimi;
+let gifAcariciando;
+let temporizadorAcariciar;
 
-  botones.cocina = crearBoton("Cocina",20, 170, function () {
+// ========================================== //
+// CARGA DE IMAGENES
+// ========================================== //
+
+/*
+  Funcion preload:
+
+  - Carga las imagenes antes de que empiece el juego.
+  - Guarda cada archivo en una variable para usarlo despues.
+*/
+function preload() {
+  imagenPerrito = loadImage("assets/perrito.png");
+  imagenSala = loadImage("assets/zonas/sala.png");
+  imagenCocina = loadImage("assets/zonas/cocina.png");
+  imagenDormitorioDia = loadImage("assets/zonas/dormitorioDia.jpg");
+  imagenDormitorioNoche = loadImage("assets/zonas/dormitorioNoche.png");
+  imagenMedico = loadImage("assets/zonas/medico.jpg");
+  imagenFondoMinijuegos = loadImage("assets/zonas/minijuegos/minijuegos.jpg");
+  imagenFondoTiro = loadImage("assets/zonas/minijuegos/tiroAlblanco.png");
+  imagenFondoEspacio = loadImage("assets/zonas/minijuegos/espacio.jpg");
+  imagenPerritosAliens = loadImage("assets/zonas/minijuegos/perritosAliens.png");
+  imagenSniperPerro = loadImage("assets/zonas/minijuegos/sniperPerro.png");
+  imagenPerroCocinero = loadImage("assets/perroCocinero.png");
+  imagenDoctor = loadImage("assets/estados/doctor.png");
+  imagenEnojado = loadImage("assets/estados/enojado.png");
+  imagenAlimentame = loadImage("assets/estados/alimentame.jpg");
+  imagenCansado = loadImage("assets/estados/cansado.png");
+  imagenTriste = loadImage("assets/estados/trsite.png");
+  imagenPerroAdios = loadImage("assets/estados/perritoAdios.png");
+  imagenMimi = loadImage("assets/estados/aMimi.png");
+}
+
+// ========================================== //
+// INICIO DEL JUEGO Y BOTONES
+// ========================================== //
+
+/*
+  Funcion setup:
+
+  - Crea el canvas y su contenedor.
+  - Prepara el GIF y crea los botones de cada zona.
+*/
+function setup() {
+  // ========================================== //
+  // CONTENEDOR Y CANVAS
+  // ========================================== //
+
+  /*
+    - createDiv crea un contenedor HTML para agrupar los elementos del juego.
+    - class conecta el contenedor con sus estilos de style.css.
+    - parent mete el canvas dentro del contenedor para mantenerlos juntos.
+  */
+  contenedorCanvas = createDiv();
+  contenedorCanvas.class("contenedor-canvas");
+  createCanvas(1000, 600).parent(contenedorCanvas);
+  gifAcariciando = createImg("assets/acariziando.gif", "Perro siendo acariciado");
+  gifAcariciando.parent(contenedorCanvas);
+  gifAcariciando.position(390, 190);
+  gifAcariciando.size(220, 220);
+  gifAcariciando.hide();
+
+  botones.cocina = crearBoton("Cocina", 20, 170, function () {
     cambiarPantalla("cocina");
   });
-  botones.medico = crearBoton("Médico",20, 210, function () {
+  botones.medico = crearBoton("Médico", 20, 210, function () {
     cambiarPantalla("medico");
   });
-  botones.cariciar = crearBoton("Acariciar",20, 250, cariciar);
-  botones.habitacion = crearBoton("Habitación",20, 290, function () {
+  botones.cariciar = crearBoton("Acariciar", 20, 250, cariciar);
+  botones.habitacion = crearBoton("Habitación", 20, 290, function () {
     cambiarPantalla("habitacion");
   });
-  botones.minijuegos = crearBoton("Minijuegos",20, 330, function () {
+  botones.minijuegos = crearBoton("Minijuegos", 20, 330, function () {
     cambiarPantalla("minijuegos");
   });
-  botones.menu = crearBoton("Volver al menú",20, 170, function () {
+  botones.menu = crearBoton("Volver al menú", 20, 170, function () {
     cambiarPantalla("menu");
   });
-  botones.dormir = crearBoton("Dormir",20, 210, dormir);
-  botones.esquivar = crearBoton("Esquivar bolas (-25 energía, -30 hambre)",20, 210, empezarEsquivar);
-  botones.clicarCirculo = crearBoton("Clicar círculo (-15 energía, -5 hambre)",20, 250, empezarClicar);
+  botones.dormir = crearBoton("Dormir", 20, 210, dormir);
+  botones.esquivar = crearBoton("Esquivar naves (-25 energía, -30 hambre)", 20, 210, empezarEsquivar);
+  botones.clicarCirculo = crearBoton("Dispara a la diana (-15 energía, -5 hambre)", 20, 250, empezarClicar);
 
-  botones.manzana = crearBoton("Manzana - 20 monedas", 20, 210, function () {
+  botones.manzana = crearBoton("Manzana +10 hambre  -20 $", 20, 210, function () {
     alimentar(alimentos[0]);
   });
-  botones.pan = crearBoton("Pan - 50 monedas", 20, 250, function () {
+  botones.pan = crearBoton("Pan +25 hambre  -50 $", 20, 250, function () {
     alimentar(alimentos[1]);
   });
-  botones.pastel = crearBoton("Pastel - 150 monedas", 20, 290, function () {
+  botones.pastel = crearBoton("Pastel +100 hambre  -150 $", 20, 290, function () {
     alimentar(alimentos[2]);
   });
-  botones.tiritas = crearBoton("Tiritas - 20 monedas", 20, 210, function () {
+  botones.bebidaEnergetica = crearBoton("Bebida energética  -5 vida  +30 energía  -50 $", 20, 330, function () {
+    alimentar(alimentos[3]);
+  });
+  botones.tiritas = crearBoton("Tiritas +15 vida  -20 $", 20, 210, function () {
     curacion(curaciones[0]);
   });
-  botones.vendas = crearBoton("Vendas - 50 monedas", 20, 250, function () {
+  botones.vendas = crearBoton("Vendas +25 vida  -50 $", 20, 250, function () {
     curacion(curaciones[1]);
   });
-  botones.pocion = crearBoton("Poción - 80 monedas", 20, 290, function () {
+  botones.pocion = crearBoton("Poción +50 vida  -80 $", 20, 290, function () {
     curacion(curaciones[2]);
   });
-  botones.kitMedico = crearBoton("Kit médico - 180 monedas", 20, 330, function () {
+  botones.kitMedico = crearBoton("Kit médico +100 vida  -180 $", 20, 330, function () {
     curacion(curaciones[3]);
   });
 
   actualizarBotones();
 }
 
+/*
+  Funcion crearBoton:
+
+  - Recibe el texto, la posicion y la accion del boton.
+  - Lo coloca dentro del contenedor del canvas.
+*/
 function crearBoton(texto, x, y, accion) {
   let boton = createButton(texto);
-  boton.position((windowWidth - width) / 2 + x, (windowHeight - height) / 2 + y);
+  boton.parent(contenedorCanvas);
+  boton.position(x, y);
   boton.mousePressed(accion);
   return boton;
 }
 
+/*
+  Funcion cambiarPantalla:
+
+  - Cambia la zona que se muestra.
+  - Oculta el GIF y actualiza los botones.
+*/
 function cambiarPantalla(nombre) {
   if (isSleeping) return;
+  if (pantalla === "muerte") return;
 
+  clearTimeout(temporizadorAcariciar);
+  gifAcariciando.hide();
   pantalla = nombre;
   actualizarBotones();
 }
 
-function actualizarBotones() {
-  botones.cocina.hide();
-  botones.medico.hide();
-  botones.cariciar.hide();
-  botones.habitacion.hide();
-  botones.minijuegos.hide();
-  botones.menu.hide();
-  botones.dormir.hide();
-  botones.esquivar.hide();
-  botones.clicarCirculo.hide();
-  botones.manzana.hide();
-  botones.pan.hide();
-  botones.pastel.hide();
-  botones.tiritas.hide();
-  botones.vendas.hide();
-  botones.pocion.hide();
-  botones.kitMedico.hide();
+/*
+  Funcion actualizarBotones:
 
+  - Oculta primero todos los botones.
+  - Despues muestra solo los que pertenecen a la zona actual.
+*/
+function actualizarBotones() {
+  let listaBotones = [
+    botones.cocina, botones.medico, botones.cariciar, botones.habitacion,
+    botones.minijuegos, botones.menu, botones.dormir, botones.esquivar,
+    botones.clicarCirculo, botones.manzana, botones.pan, botones.pastel,
+    botones.bebidaEnergetica, botones.tiritas, botones.vendas, botones.pocion,
+    botones.kitMedico
+  ];
+
+  for (let i = 0; i < listaBotones.length; i++) {
+    listaBotones[i].hide();
+  }
+
+  if (pantalla === "muerte") return;
   if (isSleeping) return;
 
   if (pantalla === "menu") {
@@ -138,6 +236,7 @@ function actualizarBotones() {
       botones.manzana.show();
       botones.pan.show();
       botones.pastel.show();
+      botones.bebidaEnergetica.show();
     } else if (pantalla === "medico") {
       botones.tiritas.show();
       botones.vendas.show();
@@ -152,69 +251,61 @@ function actualizarBotones() {
   }
 }
 
+// ========================================== //
+// DIBUJO DE PANTALLAS Y BARRAS
+// ========================================== //
+
+/*
+  Funcion draw:
+
+  - Dibuja el fondo y los elementos de la pantalla activa.
+  - Actualiza las barras, el monedero y la muerte.
+*/
 function draw() {
+  if (pantalla === "muerte") {
+    dibujarMuerte();
+    return;
+  }
+
   if (pantalla === "menu") {
-    background("#c5d9ec");
-    // IMG: imagen del menu o de la casa
-    dibujarTitulo("Casa");
+    dibujarFondo(imagenSala);
+    dibujarPerrito(imagenPerrito);
   } else if (pantalla === "cocina") {
-    background("#ead6b8");
-    // IMG: imagen de la cocina
-    dibujarTitulo("Cocina");
+    dibujarFondo(imagenCocina);
+    dibujarPerrito(imagenPerroCocinero);
   } else if (pantalla === "medico") {
-    background("#d5ead9");
-    // IMG: imagen del medico
-    dibujarTitulo("Médico");
+    dibujarFondo(imagenMedico);
+    imageMode(CORNER);
+    image(imagenDoctor, 180, 180, 190, 286);
+    dibujarPerrito(imagenPerrito);
   } else if (pantalla === "habitacion") {
-    background("#d7d2ec");
-    // IMG: imagen de la habitacion
-    dibujarTitulo("Habitación");
+    dibujarFondo(isSleeping ? imagenDormitorioNoche : imagenDormitorioDia);
+    dibujarPerrito(imagenPerrito);
   } else if (pantalla === "minijuegos") {
-    background("#d8e7d0");
-    dibujarTitulo("Minijuegos");
+    dibujarFondo(imagenFondoMinijuegos);
   } else if (pantalla === "esquivar") {
-    background("#d8e7d0");
-    dibujarTitulo("Esquiva las bolas con WASD");
+    dibujarFondo(imagenFondoEspacio);
     dibujarEsquivar();
   } else if (pantalla === "clicar") {
-    background("#d8e7d0");
-    dibujarTitulo("Clica el círculo durante 30 segundos");
+    dibujarFondo(imagenFondoTiro);
     dibujarJuegoClics();
   }
 
-  // Vida
-  fill("#4d4848");
-  rect(20, 20, 400, 20);
-  fill("#ff0000");
-  rect(20, 20, max(0, bars.hpBar) * 4, 20);
+  // Barras de necesidades
+  dibujarBarra(20, "#ff0000", bars.hpBar, "Vida");
   if (vidasExtra > 0) {
     fill(0);
     textSize(16);
-    text("+1 vida", 435, 37);
+    text("+1 vida", 455, 27);
   }
-
-  // Hambre
-  fill("#4d4848");
-  rect(20, 45, 400, 20);
-  fill("#815903");
-  rect(20, 45, max(0, bars.hungerBar) * 4, 20);
-
-  // Energia
-  fill("#4d4848");
-  rect(20, 70, 400, 20);
-  fill("#e5ff00");
-  rect(20, 70, max(0, bars.energyBar) * 4, 20);
-
-  // Felizidad
-  fill("#4d4848");
-  rect(20, 95, 400, 20);
-  fill("#22ff05");
-  rect(20, 95, max(0, bars.happyBar) * 4, 20);
+  dibujarBarra(45, "#815903", bars.hungerBar, "Hambre");
+  dibujarBarra(70, "#e5ff00", bars.energyBar, "Energía");
+  dibujarBarra(95, "#22ff05", bars.happyBar, "Felicidad");
 
   // Monedero
   fill(0);
   textSize(30);
-  text(monedero, 800, 40);
+  text(monedero + "$", 800, 40);
 
   if (isSleeping) {
     fill(30, 70, 160);
@@ -228,15 +319,103 @@ function draw() {
   comprobarMuerte();
 }
 
-function dibujarTitulo(titulo) {
+/*
+  Funcion dibujarBarra:
+
+  - Dibuja el fondo de una barra y su cantidad actual.
+  - Escribe una etiqueta para identificarla.
+*/
+function dibujarBarra(y, color, valor, etiqueta) {
+  fill("#4d4848");
+  rect(20, y, 400, 20);
+  fill(color);
+  rect(20, y, max(0, valor) * 4, 20);
   push();
-  fill(35);
-  textAlign(CENTER);
-  textSize(32);
-  text(titulo, 500, 175);
+  textAlign(CENTER, CENTER);
+  textSize(12);
+  stroke(35);
+  strokeWeight(2);
+  fill(255);
+  text(etiqueta, 220, y + 10);
   pop();
 }
 
+/*
+  Funcion dibujarPerrito:
+
+  - Usa la imagen de dormir o la de una necesidad baja si corresponde.
+  - Si no, muestra la imagen normal de la zona.
+*/
+function dibujarPerrito(imagenBase) {
+  let imagenActual = imagenBase;
+
+  if (isSleeping) {
+    imagenActual = imagenMimi;
+  } else if (bars.hpBar <= 50) {
+    imagenActual = imagenEnojado;
+  } else if (bars.hungerBar <= 50) {
+    imagenActual = imagenAlimentame;
+  } else if (bars.energyBar <= 50) {
+    imagenActual = imagenCansado;
+  } else if (bars.happyBar <= 50) {
+    imagenActual = imagenTriste;
+  }
+
+  dibujarImagenAjustada(imagenActual, width / 2, height / 2, 220, 200);
+}
+
+/*
+  Funcion dibujarMuerte:
+
+  - Muestra la imagen de despedida y el mensaje final.
+*/
+function dibujarMuerte() {
+  background("#171717");
+  dibujarImagenAjustada(imagenPerroAdios, width / 2, height / 2 - 25, 360, 360);
+  fill(255);
+  textAlign(CENTER, CENTER);
+  textSize(36);
+  text("Se marchó", width / 2, height - 45);
+}
+
+// Dibuja una imagen centrada y ajustada sin deformar sus proporciones.
+function dibujarImagenAjustada(imagen, x, y, anchoMaximo, altoMaximo) {
+  let escala = min(anchoMaximo / imagen.width, altoMaximo / imagen.height);
+  imageMode(CENTER);
+  image(imagen, x, y, imagen.width * escala, imagen.height * escala);
+}
+
+/*
+  Funcion dibujarFondo:
+
+  - Ajusta una imagen al canvas sin estirarla.
+  - Recorta el sobrante para cubrir toda la pantalla.
+*/
+function dibujarFondo(imagenFondo) {
+  let escala = max(width / imagenFondo.width, height / imagenFondo.height);
+  let anchoVisible = width / escala;
+  let altoVisible = height / escala;
+  imageMode(CORNER);
+  image(
+    imagenFondo,
+    0, 0, width, height,
+    (imagenFondo.width - anchoVisible) / 2,
+    (imagenFondo.height - altoVisible) / 2,
+    anchoVisible,
+    altoVisible
+  );
+}
+
+// ========================================== //
+// MINIJUEGO DE ESQUIVAR
+// ========================================== //
+
+/*
+  Funcion empezarEsquivar:
+
+  - Comprueba que haya energia y hambre suficientes.
+  - Reinicia las bolas y coloca al jugador al empezar.
+*/
 function empezarEsquivar() {
   if (isSleeping) return;
 
@@ -254,20 +433,25 @@ function empezarEsquivar() {
   cambiarPantalla("esquivar");
 }
 
+/*
+  Funcion dibujarEsquivar:
+
+  - Mueve al jugador con WASD o las flechas.
+  - Crea y mueve los proyectiles que caen.
+  - Comprueba si un proyectil toca al jugador.
+*/
 function dibujarEsquivar() {
-  fill(40);
+  fill(200);
   textSize(18);
   text("Esquivadas: " + bolasEsquivadas, 700, 210);
 
   if (keyIsDown(65) || keyIsDown(LEFT_ARROW)) jugadorX -= 5;
   if (keyIsDown(68) || keyIsDown(RIGHT_ARROW)) jugadorX += 5;
-  if (keyIsDown(87) || keyIsDown(UP_ARROW)) jugadorY -= 5;
-  if (keyIsDown(83) || keyIsDown(DOWN_ARROW)) jugadorY += 5;
 
   jugadorX = constrain(jugadorX, 260, 960);
   jugadorY = constrain(jugadorY, 230, 565);
 
-  if (frameCount % 4 === 0) {
+  if (frameCount % 5 === 0) {
     bolas.push({
       x: random(280, 950),
       y: 210,
@@ -275,17 +459,16 @@ function dibujarEsquivar() {
     });
   }
 
-  fill("#2457c5");
-  ellipse(jugadorX, jugadorY, 15, 15);
+  imageMode(CENTER);
+  image(imagenPerrito, jugadorX, jugadorY, 60, 54);
 
   for (let i = bolas.length - 1; i >= 0; i--) {
     bolas[i].y += bolas[i].velocidad;
-    fill("#e74c3c");
-    ellipse(bolas[i].x, bolas[i].y, 15, 15);
+    image(imagenPerritosAliens, bolas[i].x, bolas[i].y, 60, 30);
 
-    if (dist(jugadorX, jugadorY, bolas[i].x, bolas[i].y) < 10) {
+    if (dist(jugadorX, jugadorY, bolas[i].x, bolas[i].y) < 32) {
       monedero += bolasEsquivadas;
-      alert("Te golpeó una bola. Esquivaste " + bolasEsquivadas + " y ganaste esas monedas.");
+      alert("Te golpeó una nave. Esquivaste " + bolasEsquivadas + " ganaste " + bolasEsquivadas + " $.");
       cambiarPantalla("minijuegos");
       return;
     }
@@ -297,6 +480,16 @@ function dibujarEsquivar() {
   }
 }
 
+// ========================================== //
+// CODIGO SECRETO
+// ========================================== //
+
+/*
+  Funcion keyPressed:
+
+  - Revisa cada tecla contra el orden del codigo.
+  - Si se completa, entrega una vida extra.
+*/
 function keyPressed() {
   if (isSleeping) return;
 
@@ -315,6 +508,16 @@ function keyPressed() {
   }
 }
 
+// ========================================== //
+// MINIJUEGO DE CLICAR
+// ========================================== //
+
+/*
+  Funcion empezarClicar:
+
+  - Comprueba que haya energia y hambre suficientes.
+  - Reinicia el contador y prepara el primer objetivo.
+*/
 function empezarClicar() {
   if (isSleeping) return;
 
@@ -332,22 +535,37 @@ function empezarClicar() {
   cambiarPantalla("clicar");
 }
 
+/*
+  Funcion dibujarJuegoClics:
+
+  - Muestra el tiempo, los aciertos y el objetivo.
+  - Al terminar, suma los aciertos al monedero.
+*/
 function dibujarJuegoClics() {
   let segundosRestantes = 30 - floor((millis() - tiempoInicioClics) / 1000);
   fill(30);
   textSize(22);
-  text("Tiempo: " + max(0, segundosRestantes) + "   Clics: " + clics, 650, 220);
+  text("Tiempo: " + max(0, segundosRestantes) + "   Clics: " + clics, 750, 120);
 
-  fill("#f39c12");
+  imageMode(CORNER);
+  image(imagenSniperPerro, 24, 250, 130 * 2, 98 * 2);
+
+  fill("#f31212");
   ellipse(circuloX, circuloY, 55, 55);
 
   if (segundosRestantes <= 0) {
     monedero += clics;
-    alert("¡Tiempo! Hiciste " + clics + " clics y ganaste " + clics + " monedas.");
+    alert("¡Tiempo! Hiciste " + clics + " dianas y ganaste " + clics + " $.");
     cambiarPantalla("minijuegos");
   }
 }
 
+/*
+  Funcion mousePressed:
+
+  - Comprueba si el clic cae dentro del objetivo.
+  - Si acierta, suma un punto y mueve el objetivo.
+*/
 function mousePressed() {
   if (isSleeping) return;
 
@@ -361,7 +579,16 @@ function mousePressed() {
 }
 
 
-// Las necesidades disminuyen una vez por segundo mientras el personaje esta despierto.
+// ========================================== //
+// NECESIDADES Y HAMBRE
+// ========================================== //
+
+/*
+  Funcion estadoBarras:
+
+  - Reduce hambre, energia y felicidad una vez por segundo.
+  - Provoca un desmayo cuando la energia llega a cero.
+*/
 function estadoBarras() {
   if (isSleeping) {
     return;
@@ -387,15 +614,12 @@ function estadoBarras() {
   }
 }
 
-// ========================================== //
-// ALIMENTACION Y FUNCIONES DE HAMBRE //
-// ========================================== //
+/*
+  Funcion hambre:
 
-/*// ========================================== //
-  Funcion de hambre:
-
-  - si la barra de hambre esta a cero se ira descartando vida se le agregara 5 de hambre para que tengas un vreve momento de solucionar el hambre.
-// ========================================== //*/
+  - Si el hambre llega a cero, quita vida.
+  - Agrega 5 puntos de hambre para dar tiempo a recuperarla.
+*/
 function hambre() {
   if (bars.hungerBar <= 0) {
     bars.hpBar = Math.max(0, bars.hpBar - 35);
@@ -403,8 +627,18 @@ function hambre() {
   }
 }
 
+// ========================================== //
+// MUERTE Y REINICIO
+// ========================================== //
+
+/*
+  Funcion comprobarMuerte:
+
+  - Usa una vida extra si el jugador tiene una.
+  - Si no, muestra la despedida y reinicia las barras.
+*/
 function comprobarMuerte() {
-  if (bars.hpBar > 0) return;
+  if (bars.hpBar > 0 || pantalla === "muerte") return;
 
   if (vidasExtra > 0) {
     vidasExtra--;
@@ -413,24 +647,33 @@ function comprobarMuerte() {
     return;
   }
 
-  alert("La mascota ha muerto. La partida se reiniciará.");
-  monedero = monedasIniciales;
-  bars.hpBar = 100;
-  bars.hungerBar = 100;
-  bars.energyBar = 100;
-  bars.happyBar = 100;
-  isSleeping = false;
-  bolas = [];
-  cambiarPantalla("menu");
+  pantalla = "muerte";
+  actualizarBotones();
+
+  setTimeout(function () {
+    monedero += 100;
+    bars.hpBar = 100;
+    bars.hungerBar = 100;
+    bars.energyBar = 100;
+    bars.happyBar = 100;
+    isSleeping = false;
+    bolas = [];
+    pantalla = "menu";
+    actualizarBotones();
+  }, 3500);
 }
 
 
-/*// ========================================== //
-  Funcion de alimentar:
+// ========================================== //
+// ALIMENTACION Y CUIDADOS
+// ========================================== //
 
-  Suma los puntos del alimento y limita el hambre a un máximo de 100.
-  Al presionar los botones con los nombres de los alimentos, suma los puntos que tiene cada uno.
-// ========================================== //*/
+/*
+  Funcion alimentar:
+
+  - Comprueba la felicidad y el dinero antes de comprar.
+  - Aplica los efectos del alimento y limita las barras a 100.
+*/
 function alimentar(alimento) {
   if (isSleeping) return;
 
@@ -445,7 +688,19 @@ function alimentar(alimento) {
   }
 
   monedero -= alimento.precio;
-  bars.hungerBar = Math.min(100, bars.hungerBar + alimento.puntos);
+
+  if (alimento.puntos) {
+    bars.hungerBar = Math.min(100, bars.hungerBar + alimento.puntos);
+  }
+  if (alimento.vida) {
+    bars.hpBar = Math.max(0, Math.min(100, bars.hpBar + alimento.vida));
+  }
+  if (alimento.energia) {
+    bars.energyBar = Math.min(100, bars.energyBar + alimento.energia);
+  }
+  if (alimento.felicidad) {
+    bars.happyBar = Math.min(100, bars.happyBar + alimento.felicidad);
+  }
 }
 
 
@@ -453,6 +708,12 @@ function alimentar(alimento) {
 // Funciones de curacion //
 // ========================================== //
 
+/*
+  Funcion curacion:
+
+  - Comprueba si alcanza el dinero para la cura.
+  - Resta el precio y recupera vida sin superar 100.
+*/
 function curacion(cura) {
   if (isSleeping) return;
 
@@ -469,16 +730,33 @@ function curacion(cura) {
 // Funcion de acariziar //
 // ========================================== //
 
+/*
+  Funcion cariciar:
+
+  - Aumenta la felicidad del perro.
+  - Muestra el GIF durante un momento.
+*/
 function cariciar() {
   if (isSleeping) return;
 
   bars.happyBar = Math.min(100, bars.happyBar + 5);
+  clearTimeout(temporizadorAcariciar);
+  gifAcariciando.show();
+  temporizadorAcariciar = setTimeout(function () {
+    gifAcariciando.hide();
+  }, 500);
 }
 
 // ========================================== //
-// Funciones de drmir //
+// DORMIR Y DESMAYARSE
 // ========================================== //
 
+/*
+  Funcion dormir:
+
+  - Solo permite dormir cuando la energia es baja.
+  - Despues de unos segundos, recupera energia y vida.
+*/
 function dormir() {
   if (isSleeping) return;
 
@@ -498,6 +776,12 @@ function dormir() {
   }, 5000);
 }
 
+/*
+  Funcion desmayarse:
+
+  - Reduce la vida y deja la energia casi a cero.
+  - Despues de unos segundos, restaura la energia.
+*/
 function desmayarse() {
   if (isSleeping) return;
 
